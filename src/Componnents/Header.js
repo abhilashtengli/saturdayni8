@@ -9,6 +9,8 @@ import {
   faCartShopping,
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
+import GenderButton from "./GenderButton";
+
 const Header = () => {
   return (
     <>
@@ -26,6 +28,7 @@ const Header = () => {
           <img className="w-60 ml-72 " alt="" src={saturdayni8} />
         </Link>
         <ul className=" border-red-400 flex items-center mr-10">
+          <GenderButton />
           <li className=" border-red-400 px-2">
             <Link to="/profile">
               <FontAwesomeIcon
