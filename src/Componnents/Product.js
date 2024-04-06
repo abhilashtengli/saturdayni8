@@ -3,8 +3,6 @@ import db from "../firebaseConfig";
 import { getDocs, collection } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
 import { addMensProduct, addWomensProduct } from "../ReduxStore/productSlice";
-import MaleCategoryButton from "./Buttons/MaleCategoryButton";
-import FemaleCategoryButton from "./Buttons/FemaleCategoryButton";
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -53,7 +51,6 @@ const Product = () => {
   return (
     <>
       Product
-      {gender === "male" ? <MaleCategoryButton /> : <FemaleCategoryButton />}
       <div className="flex flex-wrap gap-x-4 justify-center gap-y-5">
         {producttoShow.map((item) => (
           <div key={item.id} className="border border-black">
