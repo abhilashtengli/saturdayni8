@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { addGender } from "../ReduxStore/userSlice";
 
 const GenderButton = () => {
-  const [gender, setGender] = useState("male");
+  const gender = useSelector((state) => state.user.gender);
   const dispatch = useDispatch();
 
   const handleGenderSelection = (selectedGender) => {
-    setGender(selectedGender);
     dispatch(addGender(selectedGender));
   };
 
