@@ -4,14 +4,12 @@ import { getDocs, collection } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
 import { addMensProduct, addWomensProduct } from "../ReduxStore/productSlice";
 
-const Product = () => {
+const Product = ({ param }) => {
   const dispatch = useDispatch();
   const womendataProduct = useSelector((state) => state.product.womensProduct);
   const menDataProduct = useSelector((state) => state.product.mensProduct);
   const gender = useSelector((state) => state.user.gender);
-  const selectedProductType = useSelector(
-    (state) => state.selectedProduct.productType
-  );
+
   const [producttoShow, setProductToShow] = useState([]);
 
   // Fetch data from Firestore only if it's not already in Redux store
@@ -50,14 +48,12 @@ const Product = () => {
     }
   }, [gender, menDataProduct, womendataProduct]);
 
-  console.log(selectedProductType);
   return (
     <>
-      Product
-      {selectedProductType !== "" ? (
+      {param !== "" ? (
         <div className="flex flex-wrap gap-x-4 justify-center gap-y-5">
           {producttoShow.map((item) =>
-            item.category === selectedProductType ? (
+            item.category === param ? (
               <div key={item.id} className="border border-black">
                 <img className="w-44" alt={item.name} src={item.imageURL} />
                 {item.name} - {item.price}

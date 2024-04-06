@@ -7,6 +7,9 @@ import { useSelector } from "react-redux";
 
 const MainContainer = () => {
   const gender = useSelector((state) => state.user.gender);
+  const selectedProductType = useSelector(
+    (state) => state.selectedProduct.productType
+  );
   return (
     <>
       <img className="w-screen h-[90%]" alt="" src={banner2} />
@@ -20,7 +23,7 @@ const MainContainer = () => {
       </ul>
       {gender === "male" ? <MaleCategoryButton /> : <FemaleCategoryButton />}
 
-      <Product />
+      <Product param={selectedProductType} />
     </>
   );
 };
