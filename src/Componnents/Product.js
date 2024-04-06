@@ -14,29 +14,32 @@ const Product = ({ param }) => {
 
   // Fetch data from Firestore only if it's not already in Redux store
   useEffect(() => {
-    if (menDataProduct.length === 0) {
-      const fetchMensDataFromFirestore = async () => {
-        const querySnapshot = await getDocs(collection(db, "maleProduct"));
-        const fetchedData = [];
-        querySnapshot.forEach((doc) => {
-          fetchedData.push({ id: doc.id, ...doc.data() });
-        });
-        dispatch(addMensProduct(fetchedData));
-      };
-      fetchMensDataFromFirestore();
-    }
+    const fetchDataFromFirestore = async () => {
+      // Check if men products are already loaded
+      if (menDataProduct.length === 0) {
+        const querySnapshotMen = await getDocs(collection(db, "maleProduct"));
+        const fetchedDataMen = querySnapshotMen.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        console.log(fetchedDataMen);
+        dispatch(addMensProduct(fetchedDataMen));
+      }
 
-    if (womendataProduct.length === 0) {
-      const fetchWomensDataFromFirestore = async () => {
-        const querySnapshot = await getDocs(collection(db, "FemaleProduct"));
-        const fetchedData = [];
-        querySnapshot.forEach((doc) => {
-          fetchedData.push({ id: doc.id, ...doc.data() });
-        });
-        dispatch(addWomensProduct(fetchedData));
-      };
-      fetchWomensDataFromFirestore();
-    }
+      // Check if women products are already loaded
+      if (womendataProduct.length === 0) {
+        const querySnapshotWomen = await getDocs(
+          collection(db, "FemaleProduct")
+        );
+        const fetchedDataWomen = querySnapshotWomen.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        dispatch(addWomensProduct(fetchedDataWomen));
+      }
+    };
+
+    fetchDataFromFirestore();
   }, [dispatch, menDataProduct.length, womendataProduct.length]);
 
   // Set productToShow based on gender

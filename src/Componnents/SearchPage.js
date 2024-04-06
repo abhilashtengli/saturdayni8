@@ -6,7 +6,7 @@ const SearchPage = () => {
   return (
     <>
       <Header />
-      <Product param={"jacket"} />
+      <Product param={""} />
       SearchPage
     </>
   );
