@@ -19,7 +19,7 @@ const GenderButton = () => {
           } px-2 py-1 rounded-tl-2xl rounded-bl-2xl`}
           onClick={() => handleGenderSelection("male")}
         >
-          Male
+          Men
         </button>
         <button
           className={`gender-button ${
@@ -27,7 +27,7 @@ const GenderButton = () => {
           } px-2 py-1 rounded-tr-2xl rounded-br-2xl`}
           onClick={() => handleGenderSelection("female")}
         >
-          Female
+          Women
         </button>
       </div>
     </>

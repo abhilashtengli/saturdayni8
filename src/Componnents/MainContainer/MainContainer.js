@@ -1,12 +1,8 @@
 import React from "react";
 import banner2 from "../../Images/Banner2.webp";
 import Product from "../Product";
-import MaleCategoryButton from "../Buttons/MaleCategoryButton";
-import FemaleCategoryButton from "../Buttons/FemaleCategoryButton";
-import { useSelector } from "react-redux";
 
 const MainContainer = () => {
-  const userGender = useSelector((store) => store.user.gender);
   return (
     <>
       <img className="w-screen h-[90%]" alt="" src={banner2} />
@@ -18,12 +14,8 @@ const MainContainer = () => {
           Most Trending
         </li>
       </ul>
+
       <Product />
-      {userGender === "male" ? (
-        <MaleCategoryButton />
-      ) : (
-        <FemaleCategoryButton />
-      )}
     </>
   );
 };
