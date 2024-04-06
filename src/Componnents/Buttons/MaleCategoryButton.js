@@ -14,9 +14,9 @@ const MaleCategoryButton = () => {
     <>
       <ul className="border border-red-500 flex justify-center items-center">
         <li
-          onClick={() => setSelectedType("shirts")}
+          onClick={() => setSelectedType("shirt")}
           className={`mx-2 px-4 py-1 border-black border rounded-2xl ${
-            type === "shirts" ? "bg-black text-white" : ""
+            type === "shirt" ? "bg-black text-white" : ""
           }`}
         >
           Shirts
