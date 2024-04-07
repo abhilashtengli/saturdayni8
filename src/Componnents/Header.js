@@ -1,6 +1,5 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faIcon } from "../Utils/Constants";
 import sn_logo from "../Images/SN_logo.png";
 import { Link } from "react-router-dom";
 import saturdayni8 from "../Images/SATURDAYNI8.png";
@@ -14,7 +13,7 @@ import GenderButton from "./GenderButton";
 const Header = () => {
   return (
     <>
-      <div className="sticky top-0 bg-white border-red-500 flex justify-between items-center p-3 shadow-lg">
+      <div className="z-10 sticky top-0 bg-white border-red-500 flex justify-between items-center p-3 shadow-lg">
         <Link to="/">
           {" "}
           <img
