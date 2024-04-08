@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
-const Product = ({ param, limit }) => {
+import { useNavigate } from "react-router-dom";
+const Products = ({ param, limit }) => {
   const womendataProduct = useSelector((state) => state.product.womensProduct);
   const menDataProduct = useSelector((state) => state.product.mensProduct);
   const gender = useSelector((state) => state.user.gender);
-
+  const navigate = useNavigate();
   const [producttoShow, setProductToShow] = useState([]);
+
   useEffect(() => {
     if (gender === "male") {
       setProductToShow(menDataProduct);
@@ -15,6 +16,10 @@ const Product = ({ param, limit }) => {
     }
   }, [gender, menDataProduct, womendataProduct]);
 
+  const specificProductFunction = (id) => {
+    navigate(`/specificProduct/${id}`);
+  };
+
   return (
     <>
       {param === "" ? (
@@ -22,6 +27,7 @@ const Product = ({ param, limit }) => {
           {producttoShow.slice(0, 4).map((item) => (
             <div
               key={item.id}
+              onClick={() => specificProductFunction(item.id)}
               className="cursor-pointer flex flex-col justify-between border-gray-200 border"
             >
               <img
@@ -55,6 +61,7 @@ const Product = ({ param, limit }) => {
             .map((item) => (
               <div
                 key={item.id}
+                onClick={() => specificProductFunction(item.id)}
                 className=" cursor-pointer flex flex-col justify-between border-gray-200 border"
               >
                 <img
@@ -83,4 +90,4 @@ const Product = ({ param, limit }) => {
   );
 };
 
-export default Product;
+export default Products;

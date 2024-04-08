@@ -5,6 +5,7 @@ import Cart from "./Cart";
 import Profile from "./Profile";
 import SearchPage from "./SearchPage";
 import Wishlist from "./Wishlist";
+import SpecificProduct from "./SpecificProduct";
 
 const Body = () => {
   const appRouter = createBrowserRouter([
@@ -27,6 +28,10 @@ const Body = () => {
     {
       path: "/wishlist",
       element: <Wishlist />,
+    },
+    {
+      path: "/specificProduct/:id",
+      element: <SpecificProduct />,
     },
   ]);
   return (

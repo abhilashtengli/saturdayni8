@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -12,6 +13,7 @@ const SearchPage = () => {
   const womendataProduct = useSelector((state) => state.product.womensProduct);
   const menDataProduct = useSelector((state) => state.product.mensProduct);
   const [producttoShow, setProductToShow] = useState([]);
+  const navigate = useNavigate();
   const setSelectedType = (selectedType) => {
     setSearchText(selectedType);
   };
@@ -26,6 +28,11 @@ const SearchPage = () => {
       console.log("executed");
     }
   }, [gender, menDataProduct, womendataProduct]);
+
+  const specificProductFunction = (id) => {
+    navigate(`/specificProduct/${id}`);
+  };
+
   return (
     <>
       <div className="bg-gray-100">
@@ -81,6 +88,7 @@ const SearchPage = () => {
                 item.category.includes(searchText.toLowerCase()) ? (
                   <div
                     key={item.id}
+                    onClick={() => specificProductFunction(item.id)}
                     className=" w-96 m-2 cursor-pointer flex bg-gray-50 shadow-lg p-1 rounded-lg border-black"
                   >
                     <img
@@ -88,11 +96,18 @@ const SearchPage = () => {
                       alt={item.name}
                       src={item.imageURL}
                     />
-                    <ul className="ml-5">
-                      <li className=" border-blue-500 m-1 text-sm font-semibold text-gray-500">
+                    <ul className="ml-5  border-red-500 pl-2">
+                      <li className=" border-blue-500 text-sm font-semibold text-gray-500">
                         {item.name}
                       </li>
-                      <li className=" border-blue-500 m-1">Rs.{item.price}</li>
+                      <li className=" border-blue-500 ">Rs.{item.price}</li>
+                      <ul className="flex text-sm text-gray-500 ">
+                        {item.size.map((size, index) => (
+                          <li key={index} className="mr-4 hover:text-black">
+                            {size}
+                          </li>
+                        ))}
+                      </ul>
                     </ul>
                   </div>
                 ) : (
