@@ -74,12 +74,11 @@ const SearchPage = () => {
               </div>
             )}
           </div>
-          {/* Pass searchText to Product component for searching */}
           <div className="border-black  p-1 w-[70%]">
             <div className="flex flex-wrap gap-x-10">
               {producttoShow.map((item) =>
-                item.category.toLowerCase() === searchText ||
-                item.name.toLowerCase().includes(searchText) ? (
+                item.name.toLowerCase().includes(searchText.toLowerCase()) ||
+                item.category.includes(searchText.toLowerCase()) ? (
                   <div
                     key={item.id}
                     className=" w-96 m-2 cursor-pointer flex bg-gray-50 shadow-lg p-1 rounded-lg border-black"
