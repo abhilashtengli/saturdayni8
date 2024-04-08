@@ -17,28 +17,34 @@ const Product = ({ param, limit }) => {
 
   return (
     <>
-      {param !== "" && producttoShow ? (
+      {param === "" ? (
         <div className="flex flex-wrap gap-x-4 justify-center gap-y-5">
-          {producttoShow.map((item) =>
-            item.category === param?.toLowerCase() ||
-            item.name?.toLowerCase().includes(param?.toLowerCase()) ? (
-              <div key={item.id} className="border cursor-pointer border-black">
-                <img className="w-44" alt={item.name} src={item.imageURL} />
+          {producttoShow.slice(0, 10).map((item) => (
+            <div key={item.id} className="border cursor-pointer border-black">
+              <img className="w-44" alt={item.name} src={item.imageURL} />
+              <p>
                 {item.name} - {item.price}
-              </div>
-            ) : (
-              ""
-            )
-          )}
+              </p>
+            </div>
+          ))}
         </div>
       ) : (
         <div className="flex flex-wrap gap-x-4 justify-center gap-y-5">
-          {producttoShow.slice(0, limit).map((item) => (
-            <div key={item.id} className="border cursor-pointer border-black">
-              <img className="w-44" alt={item.name} src={item.imageURL} />
-              {item.name} - {item.price}
-            </div>
-          ))}
+          {producttoShow.map(
+            (item) =>
+              (item.name.toLowerCase().includes(param.toLowerCase()) ||
+                item.category.includes(param.toLowerCase())) && (
+                <div
+                  key={item.id}
+                  className="border cursor-pointer border-black"
+                >
+                  <img className="w-44" alt={item.name} src={item.imageURL} />
+                  <p>
+                    {item.name} - {item.price}
+                  </p>
+                </div>
+              )
+          )}
         </div>
       )}
     </>
