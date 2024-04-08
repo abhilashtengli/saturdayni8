@@ -4,6 +4,7 @@ import Product from "../Product";
 import MaleCategoryButton from "../Buttons/MaleCategoryButton";
 import FemaleCategoryButton from "../Buttons/FemaleCategoryButton";
 import { useSelector } from "react-redux";
+import FetchDataFromFireStore from "../FetchDataFromFireStore";
 
 const MainContainer = () => {
   const gender = useSelector((state) => state.user.gender);
@@ -22,7 +23,6 @@ const MainContainer = () => {
         </li>
       </ul>
       {gender === "male" ? <MaleCategoryButton /> : <FemaleCategoryButton />}
-
       <Product param={selectedProductType} />
     </>
   );

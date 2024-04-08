@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
-import Product from "./Product";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { mensProduct } from "../Utils/Constants";
+import { womensProduct } from "../Utils/Constants";
 
 const SearchPage = () => {
   const [searchText, setSearchText] = useState("");
@@ -47,74 +48,29 @@ const SearchPage = () => {
             <h1 className="font-semibold text-gray-600">Popular Searches</h1>
             {gender === "male" ? (
               <div>
-                <h2
-                  className={`cursor-pointer my-2 px-1 py-1 border-black hover:bg-gray-200  ${
-                    searchText === "jacket" ? "bg-gray-200" : ""
-                  }`}
-                  onClick={() => setSelectedType("jacket")}
-                >
-                  jacket
-                </h2>
-                <h2
-                  className={`cursor-pointer my-2 px-1 py-1 border-black hover:bg-gray-200  ${
-                    searchText === "shirt" ? "bg-gray-200" : ""
-                  }`}
-                  onClick={() => setSelectedType("shirt")}
-                >
-                  shirt
-                </h2>
-                <h2
-                  className={`cursor-pointer my-2 px-1 py-1 border-black hover:bg-gray-200  ${
-                    searchText === "jeans" ? "bg-gray-200" : ""
-                  }`}
-                  onClick={() => setSelectedType("jeans")}
-                >
-                  jeans
-                </h2>
-
-                <h2
-                  className={`cursor-pointer my-2 px-1 py-1 border-black hover:bg-gray-200  ${
-                    searchText === "tshirt" ? "bg-gray-200" : ""
-                  }`}
-                  onClick={() => setSelectedType("tshirt")}
-                >
-                  tshirts
-                </h2>
+                {mensProduct.map((prod) => (
+                  <h2
+                    className={`cursor-pointer my-2 px-1 py-1 border-black hover:bg-gray-200  ${
+                      searchText === prod ? "bg-gray-200" : ""
+                    }`}
+                    onClick={() => setSelectedType(prod)}
+                  >
+                    {prod}
+                  </h2>
+                ))}
               </div>
             ) : (
               <div>
-                <h2
-                  className={`cursor-pointer my-2 px-1 py-1 border-black hover:bg-gray-200  ${
-                    searchText === "croptop" ? "bg-gray-200" : ""
-                  }`}
-                  onClick={() => setSelectedType("croptop")}
-                >
-                  crop top
-                </h2>
-                <h2
-                  className={`cursor-pointer my-2 px-1 py-1 border-black hover:bg-gray-200  ${
-                    searchText === "jeans" ? "bg-gray-200" : ""
-                  }`}
-                  onClick={() => setSelectedType("jeans")}
-                >
-                  jeans
-                </h2>
-                <h2
-                  className={`cursor-pointer my-2 px-1 py-1 border-black hover:bg-gray-200  ${
-                    searchText === "tshirt" ? "bg-gray-200" : ""
-                  }`}
-                  onClick={() => setSelectedType("tshirt")}
-                >
-                  tshirts
-                </h2>
-                <h2
-                  className={`cursor-pointer my-2 px-1 py-1 border-black hover:bg-gray-200  ${
-                    searchText === "skirt" ? "bg-gray-200" : ""
-                  }`}
-                  onClick={() => setSelectedType("skirt")}
-                >
-                  skirt
-                </h2>
+                {womensProduct.map((prod) => (
+                  <h2
+                    className={`cursor-pointer my-2 px-1 py-1 border-black hover:bg-gray-200  ${
+                      searchText === prod ? "bg-gray-200" : ""
+                    }`}
+                    onClick={() => setSelectedType(prod)}
+                  >
+                    {prod}
+                  </h2>
+                ))}
               </div>
             )}
           </div>
