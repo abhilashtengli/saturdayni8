@@ -12,7 +12,7 @@ const FemaleCategoryButton = () => {
   dispatch(addProductType(type));
   return (
     <div>
-      <ul className="border border-red-500 flex justify-center items-center">
+      <ul className="border-red-500 flex justify-center items-center">
         <li
           onClick={() => setSelectedType("skirt")}
           className={`cursor-pointer mx-2 px-4 py-1 border-black border rounded-2xl ${

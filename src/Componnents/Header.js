@@ -15,7 +15,6 @@ const Header = () => {
     <>
       <div className="z-10 sticky top-0 bg-white border-red-500 flex justify-between items-center p-3 shadow-lg">
         <Link to="/">
-          {" "}
           <img
             className="w-20 ml-5  border-red-500 rounded-full"
             alt="sn_logo"

@@ -18,33 +18,65 @@ const Product = ({ param, limit }) => {
   return (
     <>
       {param === "" ? (
-        <div className="flex flex-wrap gap-x-4 justify-center gap-y-5">
-          {producttoShow.slice(0, 10).map((item) => (
-            <div key={item.id} className="border cursor-pointer border-black">
-              <img className="w-44" alt={item.name} src={item.imageURL} />
-              <p>
-                {item.name} - {item.price}
-              </p>
+        <div className="flex flex-wrap   px-20 gap-x-4 gap-y-5">
+          {producttoShow.slice(0, 4).map((item) => (
+            <div
+              key={item.id}
+              className="cursor-pointer flex flex-col justify-between border-gray-200 border"
+            >
+              <img
+                className="w-80 h-fit "
+                alt={item.name}
+                src={item.imageURL}
+              />
+              <ul className="pl-1">
+                <li className="text-gray-700 ">{item.name}</li>
+                <li className="text-sm text-gray-700">Rs.{item.price}</li>
+                <li className="text-sm font-semibold text-gray-500 my-1">
+                  <ul className="flex">
+                    {item.size.map((size) => (
+                      <li className="mr-4 hover:text-black">{size}</li>
+                    ))}
+                  </ul>
+                </li>
+              </ul>
             </div>
           ))}
         </div>
       ) : (
-        <div className="flex flex-wrap gap-x-4 justify-center gap-y-5">
-          {producttoShow.map(
-            (item) =>
-              (item.name.toLowerCase().includes(param.toLowerCase()) ||
-                item.category.includes(param.toLowerCase())) && (
-                <div
-                  key={item.id}
-                  className="border cursor-pointer border-black"
-                >
-                  <img className="w-44" alt={item.name} src={item.imageURL} />
-                  <p>
-                    {item.name} - {item.price}
-                  </p>
-                </div>
-              )
-          )}
+        <div className="flex flex-wrap  px-20 gap-x-4 gap-y-5">
+          {producttoShow
+            .filter(
+              (item) =>
+                item.name.toLowerCase().includes(param.toLowerCase()) ||
+                item.category.toLowerCase().includes(param.toLowerCase())
+            )
+            .slice(0, 4)
+            .map((item) => (
+              <div
+                key={item.id}
+                className=" cursor-pointer flex flex-col justify-between border-gray-200 border"
+              >
+                <img
+                  className="w-80 h-fit "
+                  alt={item.name}
+                  src={item.imageURL}
+                />
+                <ul className="pl-1">
+                  <li className="text-gray-700">{item.name}</li>
+                  <li className="text-sm text-gray-700">Rs.{item.price}</li>
+                  <li className="text-sm font-semibold text-gray-500 my-1">
+                    <ul className="flex">
+                      {item.size.map((size, index) => (
+                        <li key={index} className="mr-4 hover:text-black">
+                          {size}
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            ))}
         </div>
       )}
     </>

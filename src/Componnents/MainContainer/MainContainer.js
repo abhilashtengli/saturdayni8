@@ -13,8 +13,9 @@ const MainContainer = () => {
   return (
     <>
       <img className="w-screen h-[90%]" alt="" src={banner2} />
-
-      {gender === "male" ? <MaleCategoryButton /> : <FemaleCategoryButton />}
+      <div className=" border-black pt-12 pb-5">
+        {gender === "male" ? <MaleCategoryButton /> : <FemaleCategoryButton />}
+      </div>
       <Product param={selectedProductType} />
     </>
   );
