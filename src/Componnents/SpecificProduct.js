@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { addItem } from "../ReduxStore/cartSlice";
+import { addWishlistItem } from "../ReduxStore/wishlistSlice";
 
 const SpecificProduct = () => {
   const { id } = useParams();
@@ -23,6 +24,7 @@ const SpecificProduct = () => {
 
   const AddingToWishlist = (prod) => {
     setToWishlist(prod);
+    dispatch(addWishlistItem(prod));
   };
   const settingTheSize = (s) => {
     setSize(s);
@@ -54,7 +56,7 @@ const SpecificProduct = () => {
   // console.log(wishlist);
   return (
     <>
-      <Header />
+      <Header showButton={false} />
 
       <div className="border border-red-600 p-10">
         {productToShow.map((item) => (
@@ -136,7 +138,7 @@ const SpecificProduct = () => {
               <div className=" border-red-500 mt-5">
                 {!wishlist ? (
                   <button
-                    onClick={() => AddingToWishlist(id)}
+                    onClick={() => AddingToWishlist(item)}
                     className="flex justify-center text-gray-400 border bg-gray-100  py-3 w-full  tracking-widest"
                   >
                     <FontAwesomeIcon

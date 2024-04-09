@@ -10,7 +10,7 @@ import {
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import GenderButton from "./GenderButton";
 
-const Header = () => {
+const Header = ({ showButton }) => {
   return (
     <>
       <div className="z-10 sticky top-0 bg-white border-red-500 flex justify-between items-center p-3 shadow-lg">
@@ -26,7 +26,7 @@ const Header = () => {
           <img className="w-60 ml-72 " alt="" src={saturdayni8} />
         </Link>
         <ul className=" border-red-400 flex items-center mr-10">
-          <GenderButton />
+          <GenderButton showButton={showButton} />
           <li className=" border-red-400 px-2">
             <Link to="/profile">
               <FontAwesomeIcon

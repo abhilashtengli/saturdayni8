@@ -9,20 +9,17 @@ const cartSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       const { item, userQuantity, userSize } = action.payload;
+      const totalPrice = item.price * userQuantity;
+      const id = item.id;
+      state.items = state.items.filter((item) => item.id !== id);
       const newItem = {
         ...item,
         userQuantity,
         userSize,
+        totalPrice,
       };
       state.items.push(newItem);
-      state.totalprice += item.price;
-    },
-    addUserSize: (state, action) => {
-      const id = action.payload.id;
-      const s = action.payload.s;
-      console.log(id, s);
-      state.userDetails.id = id;
-      state.userDetails.size = s;
+      state.totalprice += totalPrice;
     },
 
     removeItem: (state, action) => {
@@ -40,6 +37,5 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addItem, removeItem, clearItem, addUserSize } =
-  cartSlice.actions;
+export const { addItem, removeItem, clearItem } = cartSlice.actions;
 export default cartSlice.reducer;

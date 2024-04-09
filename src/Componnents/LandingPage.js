@@ -6,7 +6,7 @@ import Footer from "./Footer";
 const LandingPage = () => {
   return (
     <>
-      <Header />
+      <Header showButton={true} />
       <MainContainer />
       <Footer />
     </>
