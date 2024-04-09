@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "./Header";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { addItem } from "../ReduxStore/cartSlice";
+
 const SpecificProduct = () => {
   const { id } = useParams();
   const womensData = useSelector((state) => state.product.womensProduct);
   const mensData = useSelector((state) => state.product.mensProduct);
   const gender = useSelector((state) => state.user.gender);
   const [productToShow, setProductToShow] = useState([]);
-  const [quantity, setQuantity] = useState(1);
-  const [size, setSize] = useState("");
+  const [userQuantity, setQuantity] = useState(1);
+  const [userSize, setSize] = useState();
   const [wishlist, setToWishlist] = useState();
+  const dispatch = useDispatch();
+
+  const addItemToCart = (item, userQuantity, userSize) => {
+    dispatch(addItem({ item, userQuantity, userSize }));
+  };
 
   const AddingToWishlist = (prod) => {
     setToWishlist(prod);
@@ -26,7 +33,7 @@ const SpecificProduct = () => {
   };
 
   const decreaseQuantity = () => {
-    if (quantity > 1) {
+    if (userQuantity > 1) {
       setQuantity((prevQuantity) => prevQuantity - 1);
     }
   };
@@ -44,7 +51,7 @@ const SpecificProduct = () => {
     }
   }, [gender, mensData, womensData]);
 
-  console.log(wishlist);
+  // console.log(wishlist);
   return (
     <>
       <Header />
@@ -82,7 +89,7 @@ const SpecificProduct = () => {
                     key={s}
                     onClick={() => settingTheSize(s)}
                     className={`w-10 p-2 text-center ${
-                      size === s
+                      userSize === s
                         ? "bg-black text-white"
                         : "hover:bg-black hover:text-white hover:scale-105"
                     } tracking-widest cursor-pointer mr-4 border border-black rounded-lg transition duration-300`}
@@ -102,7 +109,7 @@ const SpecificProduct = () => {
                   >
                     -
                   </button>
-                  <div className="px-3 text-sm">{quantity}</div>
+                  <div className="px-3 text-sm">{userQuantity}</div>
                   <button
                     className="px-3 py-1  hover:bg-gray-200 "
                     onClick={increaseQuantity}
@@ -113,12 +120,15 @@ const SpecificProduct = () => {
               </div>
 
               <div className=" border-red-500 mt-10">
-                {!size ? (
-                  <button className="  bg-gray-100 border text-gray-400 py-3 w-full  tracking-widest">
+                {!userSize ? (
+                  <button className="bg-gray-100 border text-gray-400 py-3 w-full  tracking-widest">
                     SELECT A SIZE
                   </button>
                 ) : (
-                  <button className="border  border-black transition duration-300 py-3 text-white bg-black w-full text- tracking-widest">
+                  <button
+                    onClick={() => addItemToCart(item, userQuantity, userSize)}
+                    className="border  border-black transition duration-300 py-3 text-white bg-black w-full text- tracking-widest"
+                  >
                     ADD TO CART
                   </button>
                 )}
