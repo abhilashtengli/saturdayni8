@@ -18,11 +18,11 @@ const Body = () => {
       element: <Cart />,
     },
     {
-      path: "profile",
+      path: "/profile",
       element: <Profile />,
     },
     {
-      path: "searchPage",
+      path: "/searchPage",
       element: <SearchPage />,
     },
     {

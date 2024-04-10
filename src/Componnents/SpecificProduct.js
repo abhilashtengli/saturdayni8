@@ -56,7 +56,7 @@ const SpecificProduct = () => {
   // console.log(wishlist);
   return (
     <>
-      <Header showButton={false} />
+      <Header />
 
       <div className="border border-red-600 p-10">
         {productToShow.map((item) => (
