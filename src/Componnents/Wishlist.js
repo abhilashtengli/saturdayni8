@@ -2,14 +2,18 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import { list } from "../Utils/Constants";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import cart_img from "../Images/cart_img.png";
 import { Link } from "react-router-dom";
 import { addItem } from "../ReduxStore/cartSlice";
+import { removeWishlistItem } from "../ReduxStore/wishlistSlice";
 
 const Wishlist = () => {
   const data = useSelector((state) => state.wishlist.items);
   const [selectedQuantities, setSelectedQuantities] = useState({});
   const [selectedSizes, setSelectedSizes] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Set default quantity for all items
@@ -26,6 +30,10 @@ const Wishlist = () => {
     const userQuantity = selectedQuantities[item.id];
     const userSize = selectedSizes[item.id];
     dispatch(addItem({ item, userQuantity, userSize }));
+  };
+
+  const removeItemFromWishlist = (id) => {
+    dispatch(removeWishlistItem({ id }));
   };
 
   const dispatch = useDispatch();
@@ -53,6 +61,9 @@ const Wishlist = () => {
       setQuantityForItem(itemId, selectedQuantities[itemId] - 1);
     }
   };
+  const specificProductFunction = (id) => {
+    navigate(`/specificProduct/${id}`);
+  };
 
   console.log(data);
   return (
@@ -76,16 +87,23 @@ const Wishlist = () => {
         <div className=" border-red-500 w-[75%] py-32">
           {data !== null && data.length > 0 ? (
             <div>
-              <ul className=" flex flex-wrap w-[80%] ml-5 p-5 rounded-xl shadow-slate-200	border border-gray-300 shadow-lg ">
+              <ul className="flex flex-wrap w-[80%] ml-5 p-5 rounded-xl shadow-slate-200	border border-gray-300 shadow-lg ">
                 {data &&
                   data.map((item, index) => (
                     <li
                       key={index}
-                      className="flex flex-col m-2 items-center rounded-xl shadow-slate-300	border border-gray-200 shadow-lg w-60 p-5"
+                      className="flex hover:scale-105 transition duration-300 flex-col m-2 items-center rounded-xl shadow-slate-300	border border-gray-300  shadow-lg w-60 p-5"
                     >
+                      <button
+                        className="absolute -top-3 -right-3 bg-black text-white  w-6 h-7 rounded-full  flex justify-center cursor-pointer"
+                        onClick={() => removeItemFromWishlist(item.id)} // Call removeItemFromWishlist function
+                      >
+                        x
+                      </button>
                       <h1 className="mb-2 tracking-widest">{item.name}</h1>
                       <img
-                        className="w-20"
+                        onClick={() => specificProductFunction(item.id)}
+                        className="w-20 cursor-pointer"
                         alt={item.name}
                         src={item.imageURL}
                       />

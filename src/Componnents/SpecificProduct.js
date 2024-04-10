@@ -58,7 +58,7 @@ const SpecificProduct = () => {
     <>
       <Header />
 
-      <div className="border border-red-600 p-10">
+      <div className=" border-red-600 p-10">
         {productToShow.map((item) => (
           <div key={item.id} className="flex justify-center ">
             <div className=" w-[50%] border-black flex justify-center">
@@ -68,6 +68,7 @@ const SpecificProduct = () => {
                 className="w-[75%] h-[80%]"
               />
             </div>
+
             <div className=" border-black w-[50%] pl-10">
               <h1 className=" border-red-500 text-3xl py-2 tracking-widest ">
                 {item.name.toUpperCase()}
