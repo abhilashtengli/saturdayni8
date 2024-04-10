@@ -11,7 +11,6 @@ const SpecificProduct = () => {
   const { id } = useParams();
   const womensData = useSelector((state) => state.product.womensProduct);
   const mensData = useSelector((state) => state.product.mensProduct);
-  const gender = useSelector((state) => state.user.gender);
   const [productToShow, setProductToShow] = useState([]);
   const [userQuantity, setQuantity] = useState(1);
   const [userSize, setSize] = useState();
@@ -40,20 +39,12 @@ const SpecificProduct = () => {
     }
   };
 
-  const filterData = (data) => {
-    const filteredData = data.filter((item) => item.id === id);
-    setProductToShow(filteredData);
-  };
-
   useEffect(() => {
-    if (gender === "male") {
-      filterData(mensData);
-    } else {
-      filterData(womensData);
-    }
-  }, [gender, mensData, womensData]);
+    const combinedData = [...mensData, ...womensData];
+    const filteredData = combinedData.filter((item) => item.id === id);
+    setProductToShow(filteredData);
+  }, [id, mensData, womensData]);
 
-  // console.log(wishlist);
   return (
     <>
       <Header />
