@@ -15,15 +15,17 @@ const SpecificProduct = () => {
   const [userQuantity, setQuantity] = useState(1);
   const [userSize, setSize] = useState();
   const [wishlist, setToWishlist] = useState();
+  const cartItems = useSelector((state) => state.cart.items);
+  const wishListItems = useSelector((state) => state.wishlist.items);
   const dispatch = useDispatch();
 
   const addItemToCart = (item, userQuantity, userSize) => {
     dispatch(addItem({ item, userQuantity, userSize }));
   };
 
-  const AddingToWishlist = (prod) => {
-    setToWishlist(prod);
-    dispatch(addWishlistItem(prod));
+  const AddingToWishlist = (item, userQuantity, userSize) => {
+    setToWishlist(item);
+    dispatch(addWishlistItem({ item, userQuantity, userSize }));
   };
   const settingTheSize = (s) => {
     setSize(s);
@@ -43,7 +45,24 @@ const SpecificProduct = () => {
     const combinedData = [...mensData, ...womensData];
     const filteredData = combinedData.filter((item) => item.id === id);
     setProductToShow(filteredData);
-  }, [id, mensData, womensData]);
+
+    const itemExistsInCart = cartItems.some((item) => item.id === id);
+    const itemsExistInWishlist = wishListItems.some((item) => item.id === id);
+
+    if (itemExistsInCart) {
+      const userQuantity = cartItems.find(
+        (item) => item.id === id
+      ).userQuantity;
+      setQuantity(userQuantity);
+    } else if (itemsExistInWishlist) {
+      const userQuantity = wishListItems.find(
+        (item) => item.id === id
+      ).userQuantity;
+      setQuantity(userQuantity);
+    } else {
+      setQuantity(1);
+    }
+  }, [id, mensData, womensData, cartItems]);
 
   return (
     <>
@@ -99,14 +118,14 @@ const SpecificProduct = () => {
                 <div className="flex mt-2 items-center w-fit border ">
                   <button
                     className="px-3 py-1 hover:bg-gray-200  "
-                    onClick={decreaseQuantity}
+                    onClick={() => decreaseQuantity()}
                   >
                     -
                   </button>
                   <div className="px-3 text-sm">{userQuantity}</div>
                   <button
                     className="px-3 py-1  hover:bg-gray-200 "
-                    onClick={increaseQuantity}
+                    onClick={() => increaseQuantity()}
                   >
                     +
                   </button>
@@ -130,7 +149,9 @@ const SpecificProduct = () => {
               <div className=" border-red-500 mt-5">
                 {!wishlist ? (
                   <button
-                    onClick={() => AddingToWishlist(item)}
+                    onClick={() =>
+                      AddingToWishlist(item, userQuantity, userSize)
+                    }
                     className="flex justify-center text-gray-400 border bg-gray-100  py-3 w-full  tracking-widest"
                   >
                     <FontAwesomeIcon

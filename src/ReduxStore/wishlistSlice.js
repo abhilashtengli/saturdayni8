@@ -4,11 +4,30 @@ const wishlistSlice = createSlice({
   name: "wishlist",
   initialState: {
     items: [],
+    totalprice: 0,
   },
   reducers: {
     addWishlistItem: (state, action) => {
-      state.items = state.items.filter((item) => item.id !== action.payload.id);
-      state.items.push(action.payload);
+      const { item, userQuantity, userSize } = action.payload;
+      const totalPrice = item.price * userQuantity;
+      const id = item.id;
+      state.items = state.items.filter((item) => item.id !== id);
+      const newItem = {
+        ...item,
+        userQuantity,
+        userSize,
+        totalPrice,
+      };
+      state.items.push(newItem);
+      state.totalprice += totalPrice;
+    },
+
+    updateQuantity: (state, action) => {
+      const { itemId, quantity } = action.payload;
+      const productIndex = state.items.findIndex((item) => item.id === itemId);
+      if (productIndex !== -1) {
+        state.items[productIndex].userQuantity = quantity;
+      }
     },
     removeWishlistItem: (state, action) => {
       const itemId = action.payload.id;
@@ -22,6 +41,10 @@ const wishlistSlice = createSlice({
   },
 });
 
-export const { addWishlistItem, removeWishlistItem, clearItem } =
-  wishlistSlice.actions;
+export const {
+  addWishlistItem,
+  removeWishlistItem,
+  clearItem,
+  updateQuantity,
+} = wishlistSlice.actions;
 export default wishlistSlice.reducer;

@@ -6,27 +6,30 @@ import { useNavigate } from "react-router-dom";
 
 import cart_img from "../Images/cart_img.png";
 import { Link } from "react-router-dom";
-import { addItem } from "../ReduxStore/cartSlice";
-import { removeWishlistItem } from "../ReduxStore/wishlistSlice";
+import { addItem, updateCartQuantity } from "../ReduxStore/cartSlice";
+import {
+  addWishlistItem,
+  removeWishlistItem,
+  updateQuantity,
+} from "../ReduxStore/wishlistSlice";
 
 const Wishlist = () => {
   const data = useSelector((state) => state.wishlist.items);
   const [selectedQuantities, setSelectedQuantities] = useState({});
   const [selectedSizes, setSelectedSizes] = useState({});
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    // Set default quantity for all items
-    const defaultQuantity = 1; // Change this to the default quantity you want
-    const defaultQuantities = {};
+    const quantities = {};
     data.forEach((item) => {
-      defaultQuantities[item.id] = defaultQuantity;
+      quantities[item.id] = item.userQuantity;
     });
-    setSelectedQuantities(defaultQuantities);
+    setSelectedQuantities(quantities);
+    console.log(quantities);
   }, [data]);
 
   const addItemToCart = (item) => {
-    // console.log(item);
     const userQuantity = selectedQuantities[item.id];
     const userSize = selectedSizes[item.id];
     dispatch(addItem({ item, userQuantity, userSize }));
@@ -34,15 +37,6 @@ const Wishlist = () => {
 
   const removeItemFromWishlist = (id) => {
     dispatch(removeWishlistItem({ id }));
-  };
-
-  const dispatch = useDispatch();
-
-  const setQuantityForItem = (itemId, quantity) => {
-    setSelectedQuantities((prevState) => ({
-      ...prevState,
-      [itemId]: quantity,
-    }));
   };
 
   const setSizeForItem = (itemId, size) => {
@@ -53,19 +47,30 @@ const Wishlist = () => {
   };
 
   const increaseQuantity = (itemId) => {
-    setQuantityForItem(itemId, (selectedQuantities[itemId] || 0) + 1);
+    const productData = data.find((item) => item.id === itemId);
+    const quantity = productData.userQuantity + 1;
+    setSelectedQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [itemId]: quantity,
+    }));
+    dispatch(updateQuantity({ itemId, quantity }));
+    dispatch(updateCartQuantity({ itemId, quantity }));
   };
 
   const decreaseQuantity = (itemId) => {
-    if (selectedQuantities[itemId] > 0) {
-      setQuantityForItem(itemId, selectedQuantities[itemId] - 1);
-    }
+    const productData = data.find((item) => item.id === itemId);
+    const quantity = productData.userQuantity - 1;
+    setSelectedQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [itemId]: quantity,
+    }));
+    dispatch(updateQuantity({ itemId, quantity }));
+    dispatch(updateCartQuantity({ itemId, quantity }));
   };
   const specificProductFunction = (id) => {
     navigate(`/specificProduct/${id}`);
   };
 
-  console.log(data);
   return (
     <>
       <Header />

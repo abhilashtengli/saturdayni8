@@ -7,22 +7,29 @@ import { Link } from "react-router-dom";
 const Cart = () => {
   const productdata = useSelector((state) => state.cart.items);
   const totalprice = useSelector((state) => state.cart.totalprice);
-  const [userQuantity, setQuantity] = useState(productdata.userQuantity);
+  const [selectedQuantities, setSelectedQuantities] = useState({});
   const dispatch = useDispatch();
 
   const removeItemFromCart = (id) => {
     dispatch(removeItem({ id }));
   };
 
-  const increaseQuantity = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+  const setQuantityForItem = (itemId, quantity) => {
+    setSelectedQuantities((prevState) => ({
+      ...prevState,
+      [itemId]: quantity,
+    }));
+  };
+  const increaseQuantity = (itemId) => {
+    setQuantityForItem(itemId, (selectedQuantities[itemId] || 0) + 1);
   };
 
-  const decreaseQuantity = () => {
-    if (userQuantity > 1) {
-      setQuantity((prevQuantity) => prevQuantity - 1);
+  const decreaseQuantity = (itemId) => {
+    if (selectedQuantities[itemId] > 0) {
+      setQuantityForItem(itemId, selectedQuantities[itemId] - 1);
     }
   };
+
   return (
     <>
       <Header />
@@ -37,6 +44,7 @@ const Cart = () => {
                 {productdata.length} items
               </h1>
             </header>
+
             <div className=" border-red-600">
               {productdata.map((item) => (
                 <div className="border-b-2 py-2 border-gray-200 flex justify-between items-center">
@@ -45,7 +53,7 @@ const Cart = () => {
                     alt={item.name}
                     src={item.imageURL}
                   />
-                  <div className="w-40">
+                  <div className="w-40  border-red-500">
                     <h1 className="text-gray-500 font-semibold text-sm">
                       {item.category.toUpperCase()}
                     </h1>
@@ -56,26 +64,26 @@ const Cart = () => {
                       {item.userSize}
                     </h1>
                   </div>
-                  <div className="">
-                    <div className="flex mt-2 items-center w-fit border ">
-                      <button
-                        className="px-3 py-1 hover:bg-gray-200  "
-                        onClick={decreaseQuantity}
-                      >
-                        -
-                      </button>
-                      <div className="px-3 text-sm">{item.userQuantity}</div>
-                      <button
-                        className="px-3 py-1  hover:bg-gray-200 "
-                        onClick={increaseQuantity}
-                      >
-                        +
-                      </button>
-                    </div>
+
+                  <div className="flex mt-2 items-center w-fit border ">
+                    <button
+                      className="px-3 py-1 hover:bg-gray-200  "
+                      onClick={() => decreaseQuantity(item.id)}
+                    >
+                      -
+                    </button>
+                    <div className="px-3 text-sm">{item.userQuantity}</div>
+                    <button
+                      className="px-3 py-1  hover:bg-gray-200 "
+                      onClick={() => increaseQuantity(item.id)}
+                    >
+                      +
+                    </button>
                   </div>
                   <h1 className="text-sm font-semibold text-gray-700">
                     Rs.{item.userQuantity * item.price}-/
                   </h1>
+
                   <button
                     className="text-black text-lg w-6 h-6 flex mr-2 rounded-full justify-center cursor-pointer"
                     onClick={() => removeItemFromCart(item.id)} // Call removeItemFromWishlist function
