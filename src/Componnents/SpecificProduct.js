@@ -17,6 +17,7 @@ const SpecificProduct = () => {
   const [wishlist, setToWishlist] = useState();
   const cartItems = useSelector((state) => state.cart.items);
   const wishListItems = useSelector((state) => state.wishlist.items);
+  const [isPresentInWishlist, setIsPresentInWishlist] = useState(false);
   const dispatch = useDispatch();
 
   const addItemToCart = (item, userQuantity, userSize) => {
@@ -46,21 +47,10 @@ const SpecificProduct = () => {
     const filteredData = combinedData.filter((item) => item.id === id);
     setProductToShow(filteredData);
 
-    const itemExistsInCart = cartItems.some((item) => item.id === id);
     const itemsExistInWishlist = wishListItems.some((item) => item.id === id);
 
-    if (itemExistsInCart) {
-      const userQuantity = cartItems.find(
-        (item) => item.id === id
-      ).userQuantity;
-      setQuantity(userQuantity);
-    } else if (itemsExistInWishlist) {
-      const userQuantity = wishListItems.find(
-        (item) => item.id === id
-      ).userQuantity;
-      setQuantity(userQuantity);
-    } else {
-      setQuantity(1);
+    if (itemsExistInWishlist) {
+      setIsPresentInWishlist(true);
     }
   }, [id, mensData, womensData, cartItems]);
 
@@ -147,7 +137,7 @@ const SpecificProduct = () => {
                 )}
               </div>
               <div className=" border-red-500 mt-5">
-                {!wishlist ? (
+                {!isPresentInWishlist && !wishlist ? (
                   <button
                     onClick={() =>
                       AddingToWishlist(item, userQuantity, userSize)
