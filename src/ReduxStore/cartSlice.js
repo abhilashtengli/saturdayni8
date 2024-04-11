@@ -9,9 +9,6 @@ const cartSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       const { item, userQuantity, userSize } = action.payload;
-      console.log(item);
-      console.log(userQuantity);
-      console.log(userSize);
       const totalPrice = item.price * userQuantity;
       const id = item.id;
       state.items = state.items.filter((item) => item.id !== id);
