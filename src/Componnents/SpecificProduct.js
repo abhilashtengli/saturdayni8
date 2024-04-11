@@ -15,7 +15,6 @@ const SpecificProduct = () => {
   const [userQuantity, setQuantity] = useState(1);
   const [userSize, setSize] = useState();
   const [wishlist, setToWishlist] = useState();
-  const cartItems = useSelector((state) => state.cart.items);
   const wishListItems = useSelector((state) => state.wishlist.items);
   const [isPresentInWishlist, setIsPresentInWishlist] = useState(false);
   const dispatch = useDispatch();
@@ -52,7 +51,7 @@ const SpecificProduct = () => {
     if (itemsExistInWishlist) {
       setIsPresentInWishlist(true);
     }
-  }, [id, mensData, womensData, cartItems]);
+  }, [id, mensData, womensData]);
 
   return (
     <>

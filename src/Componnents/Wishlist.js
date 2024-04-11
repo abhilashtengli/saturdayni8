@@ -3,14 +3,10 @@ import Header from "./Header";
 import { list } from "../Utils/Constants";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 import cart_img from "../Images/cart_img.png";
 import { Link } from "react-router-dom";
 import { addItem } from "../ReduxStore/cartSlice";
-import {
-  removeWishlistItem,
-  updateQuantity,
-} from "../ReduxStore/wishlistSlice";
+import { removeWishlistItem } from "../ReduxStore/wishlistSlice";
 
 const Wishlist = () => {
   const data = useSelector((state) => state.wishlist.items);

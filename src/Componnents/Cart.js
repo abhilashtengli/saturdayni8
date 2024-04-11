@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import { useSelector, useDispatch } from "react-redux";
-import { removeItem } from "../ReduxStore/cartSlice";
+import { removeItem, updatePrice } from "../ReduxStore/cartSlice";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const productdata = useSelector((state) => state.cart.items);
+  const data = useSelector((state) => state.cart.items);
   const totalprice = useSelector((state) => state.cart.totalprice);
+  // const [totalpriceChange, setTotalpriceChange] = useState(totalprice);
   const [selectedQuantities, setSelectedQuantities] = useState({});
   const dispatch = useDispatch();
 
@@ -14,20 +15,34 @@ const Cart = () => {
     dispatch(removeItem({ id }));
   };
 
-  const setQuantityForItem = (itemId, quantity) => {
-    setSelectedQuantities((prevState) => ({
-      ...prevState,
-      [itemId]: quantity,
+  useEffect(() => {
+    if (data) {
+      const defaultQuantities = {};
+      data.forEach((item) => {
+        defaultQuantities[item.id] = item.userQuantity;
+      });
+      setSelectedQuantities(defaultQuantities);
+    }
+  }, [data, totalprice]);
+
+  const increaseQuantity = (itemId, itemPrice) => {
+    setSelectedQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [itemId]: (prevQuantities[itemId] || 0) + 1,
     }));
-  };
-  const increaseQuantity = (itemId) => {
-    setQuantityForItem(itemId, (selectedQuantities[itemId] || 0) + 1);
+    const val = -1;
+    dispatch(updatePrice(itemId, val, itemPrice));
+    console.log(itemId, val, itemPrice);
   };
 
-  const decreaseQuantity = (itemId) => {
-    if (selectedQuantities[itemId] > 0) {
-      setQuantityForItem(itemId, selectedQuantities[itemId] - 1);
-    }
+  const decreaseQuantity = (itemId, itemPrice) => {
+    setSelectedQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [itemId]: Math.max((prevQuantities[itemId] || 0) - 1, 1),
+    }));
+    const val = 1;
+    dispatch(updatePrice(itemId, val, itemPrice));
+    console.log(itemId, val, itemPrice);
   };
 
   return (
@@ -41,12 +56,12 @@ const Cart = () => {
                 Shopping Cart
               </h1>
               <h1 className="font-semibold text-gray-500">
-                {productdata.length} items
+                {data.length} items
               </h1>
             </header>
 
             <div className=" border-red-600">
-              {productdata.map((item) => (
+              {data.map((item) => (
                 <div className="border-b-2 py-2 border-gray-200 flex justify-between items-center">
                   <img
                     className="w-20 p-3"
@@ -68,20 +83,23 @@ const Cart = () => {
                   <div className="flex mt-2 items-center w-fit border ">
                     <button
                       className="px-3 py-1 hover:bg-gray-200  "
-                      onClick={() => decreaseQuantity(item.id)}
+                      onClick={() => decreaseQuantity(item.id, item.price)}
                     >
                       -
                     </button>
-                    <div className="px-3 text-sm">{item.userQuantity}</div>
+                    <div className="px-3 text-sm">
+                      {selectedQuantities[item.id]}
+                    </div>
                     <button
                       className="px-3 py-1  hover:bg-gray-200 "
-                      onClick={() => increaseQuantity(item.id)}
+                      onClick={() => increaseQuantity(item.id, item.price)}
                     >
                       +
                     </button>
                   </div>
                   <h1 className="text-sm font-semibold text-gray-700">
-                    Rs.{item.userQuantity * item.price}-/
+                    Rs.{selectedQuantities[item.id] * item.price}-/
+                    {totalprice}
                   </h1>
 
                   <button
