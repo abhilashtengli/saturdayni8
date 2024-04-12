@@ -2,37 +2,31 @@ import React, { useState } from "react";
 import Header from "./Header";
 import DeliveryAddress from "./DeliveryAddress.js";
 import Personaldetails from "./Personaldetails.js";
-import { list } from "../Utils/Constants";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
-  const [showProfile, setShowProfile] = useState(false); // State to control visibility of ProfileDetails
+  const [showProfile, setShowProfile] = useState(true); // State to control visibility of ProfileDetails
   const [showAddress, setShowAddress] = useState(false);
   const [showOrder, setShowOrder] = useState(false);
-  const [wishlist, setWishlist] = useState(false);
+  const navigate = useNavigate();
   const ProfileSetting = () => {
     setShowAddress(false);
     setShowOrder(false);
-    setWishlist(false);
     setShowProfile(true);
   };
   const AddressSetting = () => {
     setShowAddress(true);
     setShowOrder(false);
-    setWishlist(false);
-    setShowProfile(true);
+    setShowProfile(false);
   };
   const OrderSetting = () => {
     setShowAddress(false);
     setShowOrder(true);
-    setWishlist(false);
-    setShowProfile(true);
+    setShowProfile(false);
   };
 
   const wishlistSetting = () => {
-    setShowAddress(false);
-    setShowOrder(true);
-    setWishlist(true);
-    setShowProfile(true);
+    navigate("/wishlist");
   };
   const LogoutUser = () => {};
   return (
@@ -78,11 +72,11 @@ const Profile = () => {
         <div className=" border-red-500 w-[75%] py-16 pl-12 pr-44">
           <div className="">
             <h1 className="text-center text-3xl"> Helloo!!!</h1>
-            <div className="border border-blue-500">
-              <div className="border border-black">
+            <div className=" border-blue-500">
+              <div className=" border-black">
                 {<Personaldetails show={showProfile} />}
               </div>
-              <div className="border border-black  p-10 ">
+              <div className=" border-black  p-10 ">
                 {<DeliveryAddress show={showAddress} />}
               </div>
             </div>
