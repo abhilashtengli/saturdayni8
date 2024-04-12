@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
-import { list } from "../Utils/Constants";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import cart_img from "../Images/cart_img.png";
 import { Link } from "react-router-dom";
 import { addItem } from "../ReduxStore/cartSlice";
 import { removeWishlistItem } from "../ReduxStore/wishlistSlice";
+import ProfileList from "./ProfileList";
 
 const Wishlist = () => {
   const data = useSelector((state) => state.wishlist.items);
@@ -64,18 +64,7 @@ const Wishlist = () => {
       <Header />
       <div className="flex">
         <div className=" border-red-500 w-[35%] p-10 pt-20">
-          <div className="flex justify-end ">
-            <ul className="border  shadow-slate-400 rounded-xl border-gray-300 shadow-lg w-60">
-              {list.map((li, index) => (
-                <li
-                  key={index}
-                  className="py-2 text-start my-10 pl-10 hover:text-black hover:font-semibold cursor-pointer text-gray-700"
-                >
-                  {li}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ProfileList />
         </div>
         <div className=" border-red-500 w-[75%] py-32">
           {data !== null && data.length > 0 ? (

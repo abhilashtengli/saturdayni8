@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import { useSelector, useDispatch } from "react-redux";
-import { removeItem } from "../ReduxStore/cartSlice";
+import { removeItem, setTotalProductPrice } from "../ReduxStore/cartSlice";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
@@ -15,7 +15,7 @@ const Cart = () => {
   };
 
   const settingTotalPrice = () => {
-    dispatch(setTotalPrice(totalprice));
+    dispatch(setTotalProductPrice(totalprice + 69));
   };
 
   useEffect(() => {
@@ -54,9 +54,9 @@ const Cart = () => {
   return (
     <>
       <Header />
-      <div className="border-red-500 border w-full py-24 px-56">
-        <div className="border border-black flex">
-          <div className="border border-blue-500 w-[70%] p-10">
+      <div className="border-red-500  w-full py-20 bg-gray-100 px-60">
+        <div className=" flex border border-gray-200 shadow-2xl rounded-2xl">
+          <div className="b w-[72%] p-10 rounded-tl-2xl rounded-bl-2xl bg-white pb-10">
             <header className=" flex justify-between items-center border-b-2 px-3 border-gray-200 pb-12">
               <h1 className="text-2xl font-bold text-gray-800">
                 Shopping Cart
@@ -115,15 +115,38 @@ const Cart = () => {
                 </div>
               ))}
             </div>
-            <h1 className="text-sm font-semibold text-gray-700">
-              Total Price: Rs.{totalprice}/-
-            </h1>
             <Link to="/searchpage">
               <h1 className="mt-5">⬅ Back to Shopping</h1>
             </Link>
           </div>
 
-          <div className="border border-blue-500 w-[30%] p-5"></div>
+          <div className=" border-blue-500 w-[28%] px-2 bg-gray-200 rounded-tr-2xl rounded-br-2xl pb-10">
+            <header className="border-gray-200 border-b-2 h-28 mt-2 flex items-center pt-10 ">
+              <h1 className=" border-red-500 text-xl  font-semibold pl-5">
+                Summary
+              </h1>
+            </header>
+            <div className="tracking-wider border-black px-5 flex justify-between mt-5 font-semibold text-gray-600">
+              <h1 className="">ITEMS {data.length}</h1>
+              <h1>Rs.{totalprice}/-</h1>
+            </div>
+            <div className="tracking-wider border-black px-5 flex justify-between mt-5 font-semibold text-gray-600">
+              <h1 className="text-sm">SHIPPING </h1>
+              <h1>Rs.69/-</h1>
+            </div>
+            <div className="tracking-wider border-t-2 border-gray-200 px-5 flex justify-between mt-5 font-semibold py-5 text-gray-600">
+              <h1 className="">TOTAL PRICE</h1>
+              <h1>Rs.{totalprice + 69} /-</h1>
+            </div>
+            <div className=" border-red-500 flex justify-center px-5 mt-5">
+              <button
+                onClick={() => settingTotalPrice()}
+                className="border border-black w-full py-1 bg-black text-white "
+              >
+                CHECKOUT
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </>
