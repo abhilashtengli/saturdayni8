@@ -10,7 +10,14 @@ const orderSlice = createSlice({
     addItems: (state, action) => {
       const { totalPrice, data } = action.payload;
 
-      state.items = [...state.items, ...data];
+      // Filter out items that already exist in state
+      const newData = data.filter(
+        (item) =>
+          !state.items.some((existingItem) => existingItem.id === item.id)
+      );
+
+      // Concatenate unique items with existing items
+      state.items = [...state.items, ...newData];
       state.totalPrice = totalPrice;
     },
   },

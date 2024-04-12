@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import { useSelector, useDispatch } from "react-redux";
-import { removeItem, setTotalProductPrice } from "../ReduxStore/cartSlice";
+import {
+  clearItem,
+  removeItem,
+  setTotalProductPrice,
+} from "../ReduxStore/cartSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { addItems } from "../ReduxStore/orderSlice";
 
@@ -9,6 +13,8 @@ const Cart = () => {
   const data = useSelector((state) => state.cart.items);
   const [totalprice, setTotalPrice] = useState(0); // Initialize total price state
   const [selectedQuantities, setSelectedQuantities] = useState({});
+  const [shippingPrice, setShippingPrice] = useState();
+  const [orderPlaced, setOrderPlaced] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -17,9 +23,11 @@ const Cart = () => {
   };
 
   const settingTotalPrice = () => {
+    setOrderPlaced(true);
     dispatch(setTotalProductPrice(totalprice + 69));
     const totalPrice = totalprice + 69;
     dispatch(addItems({ totalPrice, data }));
+    dispatch(clearItem());
   };
 
   useEffect(() => {
@@ -30,6 +38,7 @@ const Cart = () => {
         defaultQuantities[item.id] = item.userQuantity;
         totalPrice += item.userQuantity * item.price; // Calculate total price for each item
       });
+      setShippingPrice(69);
       setSelectedQuantities(defaultQuantities);
       setTotalPrice(totalPrice); // Set the total price
     }
@@ -61,6 +70,13 @@ const Cart = () => {
   return (
     <>
       <Header />
+      {orderPlaced ? (
+        <h1 className=" border-black top-10 right-10 text-2xl text-white font-bold bg-green-400 py-2 text-center">
+          Order placed
+        </h1>
+      ) : (
+        ""
+      )}
       <div className="border-red-500  w-full py-20 bg-gray-100 px-60">
         <div className=" flex border border-gray-200 shadow-2xl rounded-2xl">
           <div className="b w-[72%] p-10 rounded-tl-2xl rounded-bl-2xl bg-white pb-10">
@@ -140,11 +156,19 @@ const Cart = () => {
             </div>
             <div className="tracking-wider border-black px-5 flex justify-between mt-5 font-semibold text-gray-600">
               <h1 className="text-sm">SHIPPING </h1>
-              <h1>Rs.69/-</h1>
+              {data.length !== 0 ? (
+                <h1>Rs.{shippingPrice}/-</h1>
+              ) : (
+                <h1>Rs.0/-</h1>
+              )}
             </div>
             <div className="tracking-wider border-t-2 border-gray-200 px-5 flex justify-between mt-5 font-semibold py-5 text-gray-600">
               <h1 className="">TOTAL PRICE</h1>
-              <h1>Rs.{totalprice + 69} /-</h1>
+              {data.length !== 0 ? (
+                <h1>Rs.{totalprice + shippingPrice} /-</h1>
+              ) : (
+                <h1>Rs.{totalprice} /-</h1>
+              )}
             </div>
             <div className=" border-red-500 flex justify-center px-5 mt-5">
               <button
