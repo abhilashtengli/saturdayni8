@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import { useSelector, useDispatch } from "react-redux";
-import { removeItem, updatePrice } from "../ReduxStore/cartSlice";
+import { removeItem } from "../ReduxStore/cartSlice";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
   const data = useSelector((state) => state.cart.items);
-  const totalprice = useSelector((state) => state.cart.totalprice);
-  // const [totalpriceChange, setTotalpriceChange] = useState(totalprice);
+  const [totalprice, setTotalPrice] = useState(0); // Initialize total price state
   const [selectedQuantities, setSelectedQuantities] = useState({});
   const dispatch = useDispatch();
 
@@ -15,34 +14,41 @@ const Cart = () => {
     dispatch(removeItem({ id }));
   };
 
+  const settingTotalPrice = () => {
+    dispatch(setTotalPrice(totalprice));
+  };
+
   useEffect(() => {
     if (data) {
       const defaultQuantities = {};
+      let totalPrice = 0;
       data.forEach((item) => {
         defaultQuantities[item.id] = item.userQuantity;
+        totalPrice += item.userQuantity * item.price; // Calculate total price for each item
       });
       setSelectedQuantities(defaultQuantities);
+      setTotalPrice(totalPrice); // Set the total price
     }
-  }, [data, totalprice]);
+  }, [data]);
 
   const increaseQuantity = (itemId, itemPrice) => {
     setSelectedQuantities((prevQuantities) => ({
       ...prevQuantities,
       [itemId]: (prevQuantities[itemId] || 0) + 1,
     }));
-    const val = -1;
-    dispatch(updatePrice(itemId, val, itemPrice));
-    console.log(itemId, val, itemPrice);
+    setTotalPrice((prevTotalPrice) => prevTotalPrice + itemPrice); // Increase total price
   };
 
   const decreaseQuantity = (itemId, itemPrice) => {
     setSelectedQuantities((prevQuantities) => ({
       ...prevQuantities,
-      [itemId]: Math.max((prevQuantities[itemId] || 0) - 1, 1),
+      [itemId]: Math.max((prevQuantities[itemId] || 0) - 1, 1), // Ensure quantity is not less than 1
     }));
-    const val = 1;
-    dispatch(updatePrice(itemId, val, itemPrice));
-    console.log(itemId, val, itemPrice);
+
+    // Only update the price and total price if the quantity is greater than 1
+    if (selectedQuantities[itemId] > 1) {
+      setTotalPrice((prevTotalPrice) => prevTotalPrice - itemPrice); // Decrease total price
+    }
   };
 
   return (
@@ -98,21 +104,22 @@ const Cart = () => {
                     </button>
                   </div>
                   <h1 className="text-sm font-semibold text-gray-700">
-                    Rs.{selectedQuantities[item.id] * item.price}-/
-                    {totalprice}
+                    Rs.{selectedQuantities[item.id] * item.price}/-
                   </h1>
-
                   <button
                     className="text-black text-lg w-6 h-6 flex mr-2 rounded-full justify-center cursor-pointer"
-                    onClick={() => removeItemFromCart(item.id)} // Call removeItemFromWishlist function
+                    onClick={() => removeItemFromCart(item.id)}
                   >
                     x
                   </button>
                 </div>
               ))}
             </div>
+            <h1 className="text-sm font-semibold text-gray-700">
+              Total Price: Rs.{totalprice}/-
+            </h1>
             <Link to="/searchpage">
-              <h1 className="mt-5">⬅️ Back to Shopping</h1>
+              <h1 className="mt-5">⬅ Back to Shopping</h1>
             </Link>
           </div>
 

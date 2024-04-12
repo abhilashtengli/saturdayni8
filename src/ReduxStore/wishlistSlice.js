@@ -4,22 +4,18 @@ const wishlistSlice = createSlice({
   name: "wishlist",
   initialState: {
     items: [],
-    totalprice: 0,
   },
   reducers: {
     addWishlistItem: (state, action) => {
       const { item, userQuantity, userSize } = action.payload;
-      const totalPrice = item.price * userQuantity;
       const id = item.id;
       state.items = state.items.filter((item) => item.id !== id);
       const newItem = {
         ...item,
         userQuantity,
         userSize,
-        totalPrice,
       };
       state.items.push(newItem);
-      state.totalprice += totalPrice;
     },
 
     updateQuantity: (state, action) => {
