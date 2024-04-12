@@ -18,7 +18,7 @@ const DeliveryAddress = ({ show }) => {
 
   return (
     <div
-      className={`container mx-auto mt-8 ${
+      className={`container mx-auto  border-black mt-8 ${
         show ? "block" : "hidden"
       } bg-white border border-gray-300 p-6 rounded-lg shadow-lg`}
     >

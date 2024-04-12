@@ -4,6 +4,7 @@ import productSlice from "./productSlice";
 import selectedProductSlice from "./selectedProductSlice";
 import cartSlice from "./cartSlice";
 import wishlistSlice from "./wishlistSlice";
+import orderSlice from "./orderSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     selectedProduct: selectedProductSlice,
     cart: cartSlice,
     wishlist: wishlistSlice,
+    order : orderSlice,
   },
 });
 

@@ -9,8 +9,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import GenderButton from "./GenderButton";
+import { useSelector } from "react-redux";
 
 const Header = ({ showButton }) => {
+  const cart = useSelector((state) => state.cart.items);
   return (
     <>
       <div className="z-10 sticky top-0 bg-white border-red-500 flex justify-between items-center p-3 shadow-lg">
@@ -57,6 +59,13 @@ const Header = ({ showButton }) => {
                 className=" w-10 h-5 border-black p-2"
                 icon={faCartShopping}
               />
+              <h1
+                className={`absolute top-7 right-14 bg-green-400 ${
+                  cart.length === 0 ? "hidden" : "block"
+                } text-black font-semibold w-fit px-2 text-sm py-0 rounded-full`}
+              >
+                {cart.length}
+              </h1>
             </Link>
           </li>
         </ul>

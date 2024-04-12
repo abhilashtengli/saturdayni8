@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import { useSelector, useDispatch } from "react-redux";
 import { removeItem, setTotalProductPrice } from "../ReduxStore/cartSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { addItems } from "../ReduxStore/orderSlice";
 
 const Cart = () => {
   const data = useSelector((state) => state.cart.items);
   const [totalprice, setTotalPrice] = useState(0); // Initialize total price state
   const [selectedQuantities, setSelectedQuantities] = useState({});
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const removeItemFromCart = (id) => {
@@ -16,6 +18,8 @@ const Cart = () => {
 
   const settingTotalPrice = () => {
     dispatch(setTotalProductPrice(totalprice + 69));
+    const totalPrice = totalprice + 69;
+    dispatch(addItems({ totalPrice, data }));
   };
 
   useEffect(() => {
@@ -50,6 +54,9 @@ const Cart = () => {
       setTotalPrice((prevTotalPrice) => prevTotalPrice - itemPrice); // Decrease total price
     }
   };
+  const specificProductFunction = (id) => {
+    navigate(`/specificProduct/${id}`);
+  };
 
   return (
     <>
@@ -70,7 +77,8 @@ const Cart = () => {
               {data.map((item) => (
                 <div className="border-b-2 py-2 border-gray-200 flex justify-between items-center">
                   <img
-                    className="w-20 p-3"
+                    onClick={() => specificProductFunction(item.id)}
+                    className="w-20 p-3 cursor-pointer"
                     alt={item.name}
                     src={item.imageURL}
                   />

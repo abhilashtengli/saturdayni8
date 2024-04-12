@@ -69,7 +69,7 @@ const Profile = () => {
             </ul>
           </div>
         </div>
-        <div className=" border-red-500 w-[75%] py-16 pl-12 pr-44">
+        <div className=" border-red-500 w-[65%] py-16 pl-12 pr-44">
           <div className="">
             <h1 className="text-center text-3xl"> Helloo!!!</h1>
             <div className=" border-blue-500">

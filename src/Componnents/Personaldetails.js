@@ -19,7 +19,10 @@ const Personaldetails = ({ show }) => {
   return (
     <>
       <div
-        className={`container mx-auto mt-8 px-12 ${show ? "block" : "hidden"}`}>
+        className={`container  border-black mx-auto mt-8 px-12 ${
+          show ? "block" : "hidden"
+        }`}
+      >
         <div className="bg-white border border-gray-300 p-6 rounded-lg shadow-lg">
           <div className="grid grid-cols-2 gap-4">
             <div>
