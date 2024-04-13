@@ -7,6 +7,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { mensProduct } from "../../Utils/Constants";
 import { womensProduct } from "../../Utils/Constants";
 import Footer from "./Footer";
+import FooterMenu from "../FooterMenu";
 
 const SearchPage = () => {
   const [searchText, setSearchText] = useState("");
@@ -37,9 +38,9 @@ const SearchPage = () => {
 
   return (
     <>
-      <div className="bg-gray-100">
+      <div className="md:bg-gray-100">
         <Header showButton={true} />
-        <div className="border-red-500 px-32 flex items-center sticky top-28 ">
+        <div className="border-red-500 px-5 md:px-32 flex items-center sticky top-24 md:top-32 ">
           <FontAwesomeIcon
             className="absolute w-10 h-5 border-black p-2 ml-1"
             icon={faMagnifyingGlass}
@@ -52,8 +53,8 @@ const SearchPage = () => {
           />
         </div>
 
-        <div className="  border-black flex justify-between p-10">
-          <div className=" w-80 h-96 border-red-500 p-10 shadow-lg bg-white sticky left-0 top-56">
+        <div className=" border-black flex  md:justify-between py-16 md:py-14 md:p-10">
+          <div className=" hidden md:block w-80 h-96  border-red-500 p-10 shadow-lg bg-white sticky left-0 top-56">
             <h1 className="font-semibold text-gray-600">Popular Searches</h1>
             {gender === "male" ? (
               <div>
@@ -83,22 +84,22 @@ const SearchPage = () => {
               </div>
             )}
           </div>
-          <div className="border-black  p-1 w-[70%]">
-            <div className="flex flex-wrap gap-x-10">
+          <div className="border-black  w-full p-1 md:w-[70%]">
+            <div className="flex flex-wrap justify-center md:justify-normal gap-x-7 gap-y-7 md:gap-y-0 md:gap-x-10">
               {producttoShow.map((item) =>
                 item.name.toLowerCase().includes(searchText.toLowerCase()) ||
                 item.category.includes(searchText.toLowerCase()) ? (
                   <div
                     key={item.id}
                     onClick={() => specificProductFunction(item.id)}
-                    className=" w-96 m-2 cursor-pointer flex bg-gray-50 shadow-lg p-1 rounded-lg border-black"
+                    className=" md:w-96 m-2 cursor-pointer flex-col justify-between md:justify-normal flex md:flex-row md:bg-gray-50 md:shadow-lg md:p-1 md:rounded-lg md:border-none border-black border"
                   >
                     <img
-                      className="w-24 border-red-500 rounded-lg"
+                      className="w-40 md:w-24 border-red-500 md:rounded-lg"
                       alt={item.name}
                       src={item.imageURL}
                     />
-                    <ul className="ml-5  border-red-500 pl-2">
+                    <ul className="md:ml-5  border-red-500 pl-2">
                       <li className=" border-blue-500 text-sm font-semibold text-gray-500">
                         {item.name}
                       </li>
@@ -120,7 +121,10 @@ const SearchPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
+      <div className="w-full">
+        <FooterMenu />
+      </div>
     </>
   );
 };

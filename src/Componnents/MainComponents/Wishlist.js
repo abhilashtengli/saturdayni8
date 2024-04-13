@@ -17,6 +17,7 @@ import {
   faPowerOff,
 } from "@fortawesome/free-solid-svg-icons";
 import Footer from "./Footer";
+import FooterMenu from "../FooterMenu";
 
 const Wishlist = () => {
   const data = useSelector((state) => state.wishlist.items);
@@ -295,7 +296,10 @@ const Wishlist = () => {
           <div className="  -mt-14">{<Orders show={showOrder} />}</div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
+      <div className="w-full">
+        <FooterMenu />
+      </div>
     </>
   );
 };

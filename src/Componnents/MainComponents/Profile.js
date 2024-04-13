@@ -12,6 +12,7 @@ import {
   faPowerOff,
 } from "@fortawesome/free-solid-svg-icons";
 import Footer from "./Footer.js";
+import FooterMenu from "../FooterMenu.js";
 
 const Profile = () => {
   const [showProfile, setShowProfile] = useState(false); // State to control visibility of ProfileDetails
@@ -121,7 +122,10 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      {/* <Footer/> */}
+      <div className="w-full">
+        <FooterMenu />
+      </div>
     </>
   );
 };

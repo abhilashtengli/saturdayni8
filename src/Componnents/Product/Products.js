@@ -24,15 +24,15 @@ const Products = ({ param, limit }) => {
   return (
     <>
       {param === "" ? (
-        <div className="flex flex-wrap   px-20 gap-x-4 gap-y-5">
+        <div className="flex flex-wrap justify-center md:justify-normal gap-x-7 gap-y-7 py-5 md:py-0  md:px-20  md:gap-x-4 md:gap-y-5  border-black">
           {producttoShow.slice(0, limit).map((item) => (
             <div
               key={item.id}
               onClick={() => specificProductFunction(item.id)}
-              className="cursor-pointer flex flex-col justify-between border-gray-200 border"
+              className="cursor-pointer border flex flex-col justify-between border-gray-200"
             >
               <img
-                className="w-80 h-fit "
+                className="w-40 md:w-80 h-fit "
                 alt={item.name}
                 src={item.imageURL}
               />
@@ -51,7 +51,7 @@ const Products = ({ param, limit }) => {
           ))}
         </div>
       ) : (
-        <div className="flex flex-wrap  px-20 gap-x-4 gap-y-5">
+        <div className="flex flex-wrap justify-center md:justify-normal gap-x-7 gap-y-7 py-5 md:py-0  md:px-20  md:gap-x-4 md:gap-y-5  border-black">
           {producttoShow
             .filter(
               (item) =>
@@ -63,10 +63,10 @@ const Products = ({ param, limit }) => {
               <div
                 key={item.id}
                 onClick={() => specificProductFunction(item.id)}
-                className=" cursor-pointer flex flex-col justify-between border-gray-200 border"
+                className=" cursor-pointer md:flex md:flex-col justify-between border-gray-200 border"
               >
                 <img
-                  className="w-80 h-fit "
+                  className=" w-40 md:w-80 h-fit "
                   alt={item.name}
                   src={item.imageURL}
                 />

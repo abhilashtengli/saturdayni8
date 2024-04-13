@@ -9,6 +9,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { addItems } from "../../ReduxStore/orderSlice";
 import Footer from "./Footer";
+import FooterMenu from "../FooterMenu";
 
 const Cart = () => {
   const data = useSelector((state) => state.cart.items);
@@ -182,7 +183,10 @@ const Cart = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
+      <div className="w-full">
+        <FooterMenu />
+      </div>
     </>
   );
 };

@@ -3,6 +3,7 @@ import Header from "./Header";
 import MainContainer from "../MainContainer/MainContainer";
 import Footer from "./Footer";
 import { Link } from "react-router-dom";
+import FooterMenu from "../FooterMenu";
 
 const LandingPage = () => {
   return (
@@ -17,7 +18,10 @@ const LandingPage = () => {
         </Link>
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
+      <div className="w-full">
+        <FooterMenu />
+      </div>
     </>
   );
 };
