@@ -1,11 +1,11 @@
 import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import LandingPage from "./LandingPage";
-import Cart from "./Cart";
-import Profile from "./Profile";
-import SearchPage from "./SearchPage";
-import Wishlist from "./Wishlist";
-import SpecificProduct from "./SpecificProduct";
+import LandingPage from "./MainComponents/LandingPage";
+import Cart from "./MainComponents/Cart";
+import Profile from "./MainComponents/Profile";
+import SearchPage from "./MainComponents/SearchPage";
+import Wishlist from "./MainComponents/Wishlist";
+import SpecificProduct from "./Product/SpecificProduct";
 
 const Body = () => {
   const appRouter = createBrowserRouter([

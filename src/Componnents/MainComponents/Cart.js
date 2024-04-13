@@ -5,9 +5,10 @@ import {
   clearItem,
   removeItem,
   setTotalProductPrice,
-} from "../ReduxStore/cartSlice";
+} from "../../ReduxStore/cartSlice";
 import { Link, useNavigate } from "react-router-dom";
-import { addItems } from "../ReduxStore/orderSlice";
+import { addItems } from "../../ReduxStore/orderSlice";
+import Footer from "./Footer";
 
 const Cart = () => {
   const data = useSelector((state) => state.cart.items);
@@ -181,6 +182,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

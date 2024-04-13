@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
-import db from "../firebaseConfig";
-import { addMensProduct, addWomensProduct } from "../ReduxStore/productSlice";
+import db from "../../firebaseConfig";
+import {
+  addMensProduct,
+  addWomensProduct,
+} from "../../ReduxStore/productSlice";
 import { getDocs, collection } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 const FetchDataFromFireStore = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import banner2 from "../../Images/Banner2.webp";
-import Products from "../Products";
+import Products from "../Product/Products";
 import MaleCategoryButton from "../Buttons/MaleCategoryButton";
 import FemaleCategoryButton from "../Buttons/FemaleCategoryButton";
 import { useSelector } from "react-redux";
@@ -16,7 +16,7 @@ const MainContainer = () => {
       <div className=" border-black pt-12 pb-5">
         {gender === "male" ? <MaleCategoryButton /> : <FemaleCategoryButton />}
       </div>
-      <Products param={selectedProductType} />
+      <Products param={selectedProductType} limit={4} />
     </>
   );
 };

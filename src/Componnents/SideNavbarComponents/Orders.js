@@ -1,10 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import noOrder from "../Images/no_orders.jpg";
+import noOrder from "../../Images/no_orders.jpg";
 import { Link } from "react-router-dom";
 const Orders = ({ show }) => {
   const orders = useSelector((state) => state.order.items);
-  const totalprice = useSelector((state) => state.order.totalPrice);
 
   return (
     <>
@@ -29,7 +28,7 @@ const Orders = ({ show }) => {
                 <h1 className="text-sm font-semibold text-gray-700">
                   Rs.{item.userQuantity * item.price}/-
                 </h1>
-                <p className="text-black bg-green-400 font-semibold text-sm  rounded-lg p-1 h-fit ">
+                <p className="text-black bg-green-400 font-semibold text-sm  rounded-lg p-1 px-2 h-fit ">
                   Order placed
                 </p>
               </section>

@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { mensProduct } from "../Utils/Constants";
-import { womensProduct } from "../Utils/Constants";
+import { mensProduct } from "../../Utils/Constants";
+import { womensProduct } from "../../Utils/Constants";
+import Footer from "./Footer";
 
 const SearchPage = () => {
   const [searchText, setSearchText] = useState("");
@@ -19,6 +20,7 @@ const SearchPage = () => {
   };
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     if (gender === "male") {
       setSearchText("");
       setProductToShow(menDataProduct);
@@ -118,6 +120,7 @@ const SearchPage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

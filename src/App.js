@@ -1,7 +1,7 @@
 import { Provider } from "react-redux";
 import Body from "./Componnents/Body";
 import store from "./ReduxStore/Store";
-import FetchDataFromFireStore from "./Componnents/FetchDataFromFireStore";
+import FetchDataFromFireStore from "./Componnents/FirebaseFirestore/FetchDataFromFireStore";
 
 function App() {
   return (

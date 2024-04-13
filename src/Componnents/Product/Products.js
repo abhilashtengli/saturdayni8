@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
 const Products = ({ param, limit }) => {
   const womendataProduct = useSelector((state) => state.product.womensProduct);
   const menDataProduct = useSelector((state) => state.product.mensProduct);
@@ -24,7 +25,7 @@ const Products = ({ param, limit }) => {
     <>
       {param === "" ? (
         <div className="flex flex-wrap   px-20 gap-x-4 gap-y-5">
-          {producttoShow.slice(0, 4).map((item) => (
+          {producttoShow.slice(0, limit).map((item) => (
             <div
               key={item.id}
               onClick={() => specificProductFunction(item.id)}
@@ -57,7 +58,7 @@ const Products = ({ param, limit }) => {
                 item.name.toLowerCase().includes(param.toLowerCase()) ||
                 item.category.toLowerCase().includes(param.toLowerCase())
             )
-            .slice(0, 4)
+            .slice(0, limit)
             .map((item) => (
               <div
                 key={item.id}

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Header from "./Header";
-import DeliveryAddress from "./DeliveryAddress.js";
-import Personaldetails from "./Personaldetails.js";
+import Header from "./Header.js";
+import DeliveryAddress from "../SideNavbarComponents/DeliveryAddress.js";
+import Personaldetails from "../SideNavbarComponents/Personaldetails.js";
 import { useNavigate } from "react-router-dom";
-import Orders from "./Orders.js";
+import Orders from "../SideNavbarComponents/Orders.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import {
@@ -11,11 +11,12 @@ import {
   faLocationDot,
   faPowerOff,
 } from "@fortawesome/free-solid-svg-icons";
+import Footer from "./Footer.js";
 
 const Profile = () => {
   const [showProfile, setShowProfile] = useState(false); // State to control visibility of ProfileDetails
   const [showAddress, setShowAddress] = useState(false);
-  const [showOrder, setShowOrder] = useState(false);
+  const [showOrder, setShowOrder] = useState(true);
   const navigate = useNavigate();
   const ProfileSetting = () => {
     setShowAddress(false);
@@ -41,7 +42,7 @@ const Profile = () => {
     <>
       <Header />
       <div className="flex">
-        <div className="  border-red-500 w-[35%] p-10 pt-20">
+        <div className="  border-red-500 w-[25%] p-10 pt-20">
           <div className="flex justify-end">
             <ul className="border shadow-slate-400 rounded-xl border-gray-300 shadow-lg w-60">
               <li
@@ -103,7 +104,7 @@ const Profile = () => {
             </ul>
           </div>
         </div>
-        <div className=" border-red-500 w-[65%] py-16 pl-12 pr-44">
+        <div className=" border-red-500 w-[75%] py-10 pl-12 pr-44">
           <div className="">
             <h1 className="text-center text-3xl"> Helloo!!!</h1>
             <div className=" border-blue-500">
@@ -120,6 +121,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

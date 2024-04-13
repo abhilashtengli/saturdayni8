@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Header from "./Header";
+import { Link, useParams } from "react-router-dom";
+import Header from "../MainComponents/Header";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { addItem } from "../ReduxStore/cartSlice";
-import { addWishlistItem } from "../ReduxStore/wishlistSlice";
+import { addItem } from "../../ReduxStore/cartSlice";
+import { addWishlistItem } from "../../ReduxStore/wishlistSlice";
+import Footer from "../MainComponents/Footer";
+import Products from "./Products";
 
 const SpecificProduct = () => {
   const { id } = useParams();
@@ -42,6 +44,8 @@ const SpecificProduct = () => {
   };
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
     const combinedData = [...mensData, ...womensData];
     const filteredData = combinedData.filter((item) => item.id === id);
     setProductToShow(filteredData);
@@ -52,6 +56,10 @@ const SpecificProduct = () => {
       setIsPresentInWishlist(true);
     }
   }, [id, mensData, womensData]);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -159,6 +167,17 @@ const SpecificProduct = () => {
           </div>
         ))}
       </div>
+
+      <Products onClick={scrollToTop()} param={""} limit={12} />
+      <div className="flex justify-center py-10">
+        <Link to="/searchpage">
+          <button className="text-center  border border-gray-200 transition duration-200 text-black tracking-widest  hover:border-black px-4 py-1">
+            View All
+          </button>
+        </Link>
+      </div>
+
+      <Footer />
     </>
   );
 };

@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import cart_img from "../Images/cart_img.png";
+import cart_img from "../../Images/cart_img.png";
 import { Link } from "react-router-dom";
-import { addItem } from "../ReduxStore/cartSlice";
-import { removeWishlistItem } from "../ReduxStore/wishlistSlice";
-import Personaldetails from "./Personaldetails";
-import DeliveryAddress from "./DeliveryAddress";
-import Orders from "./Orders";
+import { addItem } from "../../ReduxStore/cartSlice";
+import { removeWishlistItem } from "../../ReduxStore/wishlistSlice";
+import Personaldetails from "../SideNavbarComponents/Personaldetails";
+import DeliveryAddress from "../SideNavbarComponents/DeliveryAddress";
+import Orders from "../SideNavbarComponents/Orders";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import {
@@ -16,6 +16,7 @@ import {
   faLocationDot,
   faPowerOff,
 } from "@fortawesome/free-solid-svg-icons";
+import Footer from "./Footer";
 
 const Wishlist = () => {
   const data = useSelector((state) => state.wishlist.items);
@@ -104,7 +105,7 @@ const Wishlist = () => {
     <>
       <Header />
       <div className="flex ">
-        <div className="border-red-500 w-[35%] p-10 pt-20">
+        <div className="border-red-500 w-[25%] p-10 pt-20">
           <div className="flex justify-end ">
             <ul className="border shadow-slate-400 rounded-xl border-gray-300 shadow-lg w-60">
               <li
@@ -170,14 +171,14 @@ const Wishlist = () => {
         </div>
 
         <div
-          className={`  border-red-500 w-[65%] py-32 pl-10 ${
+          className={`  border-red-500 w-[65%] py-24 pl-10 ${
             showWishlist ? "block" : "hidden"
           }`}
         >
           <div className=" w-full border-red-500">
             {data !== null && data.length > 0 ? (
               <div>
-                <ul className="flex flex-wrap w-[80%] ml-5 p-5 rounded-xl shadow-slate-200	border border-gray-300 shadow-lg ">
+                <ul className="flex flex-wrap w-[90%] ml-5 p-5 rounded-xl shadow-slate-200	border border-gray-300 shadow-lg ">
                   {data &&
                     data.map((item, index) => (
                       <li
@@ -271,14 +272,14 @@ const Wishlist = () => {
         </div>
 
         <div
-          className={` border-red-500 w-[65%] py-32 pr-32 pl-10 ${
+          className={`border-red-500 w-[75%] py-32 pr-32 pl-10 ${
             showProfile ? "block" : "hidden"
           } `}
         >
           <div className="">{<Personaldetails show={showProfile} />}</div>
         </div>
         <div
-          className={`  border-red-500 w-[65%] py-32 pr-32 pl-10 ${
+          className={`border-red-500 w-[65%] py-32 pr-32 pl-10 ${
             showAddress ? "block" : "hidden"
           } `}
         >
@@ -287,15 +288,14 @@ const Wishlist = () => {
           </div>
         </div>
         <div
-          className={`  border-red-500 w-[65%] py-32 pr-32 pl-10 ${
+          className={`border-red-500 w-[65%] py-32 pr-32 pl-10 ${
             showOrder ? "block" : "hidden"
           } `}
         >
-          <div className=" border-black px-14">
-            {<Orders show={showOrder} />}
-          </div>
+          <div className="  -mt-14">{<Orders show={showOrder} />}</div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

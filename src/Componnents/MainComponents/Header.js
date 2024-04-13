@@ -1,14 +1,14 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import sn_logo from "../Images/SN_logo.png";
+import sn_logo from "../../Images/SN_logo.png";
 import { Link } from "react-router-dom";
-import saturdayni8 from "../Images/SATURDAYNI8.png";
+import saturdayni8 from "../../Images/SATURDAYNI8.png";
 import {
   faMagnifyingGlass,
   faCartShopping,
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
-import GenderButton from "./GenderButton";
+import GenderButton from "../Buttons/GenderButton";
 import { useSelector } from "react-redux";
 
 const Header = ({ showButton }) => {
