@@ -17,7 +17,7 @@ const GenderButton = ({ showButton }) => {
           <button
             className={`gender-button ${
               gender === "male" ? "bg-black text-white" : ""
-            } md:px-2 px-1 py-1 rounded-tl-2xl rounded-bl-2xl text-sm`}
+            } md:px-2 px-1 py-1 rounded-tl-2xl rounded-bl-2xl md:text-sm text-xs`}
             onClick={() => handleGenderSelection("male")}
           >
             Men
@@ -25,7 +25,7 @@ const GenderButton = ({ showButton }) => {
           <button
             className={`gender-button ${
               gender === "female" ? "bg-black text-white" : ""
-            } md:px-2 px-1 py-1 rounded-tr-2xl rounded-br-2xl text-sm `}
+            } md:px-2 px-1 py-1 rounded-tr-2xl rounded-br-2xl md:text-sm text-xs`}
             onClick={() => handleGenderSelection("female")}
           >
             Women

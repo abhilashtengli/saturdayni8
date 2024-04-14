@@ -105,15 +105,15 @@ const Wishlist = () => {
   return (
     <>
       <Header />
-      <div className="flex ">
-        <div className="border-red-500 w-[25%] p-10 pt-20">
-          <div className="flex justify-end ">
-            <ul className="border shadow-slate-400 rounded-xl border-gray-300 shadow-lg w-60">
+      <div className="md:flex ">
+        <div className="border-red-500 md:w-[25%] md:p-10 md:pt-20 mt-10 md:mt-0 px-5 md:px-0 ">
+          <div className="md:flex md:justify-end ">
+            <ul className="md:gap-x-0 md:gap-y-0 gap-x-3 flex justify-between md:px-0 px-5 md:py-0 py-3  md:block  border shadow-slate-400 md:rounded-xl w-full md:border-gray-300 shadow-lg md:w-60">
               <li
                 onClick={() => ProfileSetting(true)}
-                className={` flex justify-start items-center ${
+                className={` flex md:flex-row flex-col justify-start items-center ${
                   showProfile ? "font-bold text-black text-2xl" : ""
-                }py-2 text-start my-10 pl-8 hover:text-black hover:font-semibold cursor-pointer text-gray-700`}
+                }py-2 text-start md:my-10 md:pl-8 hover:text-black hover:font-semibold cursor-pointer text-gray-700`}
               >
                 <FontAwesomeIcon
                   className=" w-10 h-5 border-black p-2"
@@ -123,7 +123,7 @@ const Wishlist = () => {
               </li>
               <li
                 onClick={() => AddressSetting(true)}
-                className={`flex justify-start items-center ${
+                className={`hidden md:flex justify-start items-center ${
                   showAddress ? "font-bold text-black text-2xl" : ""
                 }py-2 text-start my-10 pl-8 hover:text-black hover:font-semibold cursor-pointer text-gray-700`}
               >
@@ -135,9 +135,9 @@ const Wishlist = () => {
               </li>
               <li
                 onClick={() => OrderSetting(true)}
-                className={` flex justify-start items-center ${
+                className={` flex md:flex-row flex-col justify-start items-center ${
                   showOrder ? "font-bold text-black text-2xl" : ""
-                }py-2 text-start my-10 pl-8 hover:text-black hover:font-semibold cursor-pointer text-gray-700`}
+                }py-2 text-start md:my-10 md:pl-8 hover:text-black hover:font-semibold cursor-pointer text-gray-700`}
               >
                 <FontAwesomeIcon
                   className=" w-10 h-5 border-black p-2"
@@ -147,9 +147,9 @@ const Wishlist = () => {
               </li>
               <li
                 onClick={() => wishlistSetting(true)}
-                className={` flex justify-start items-center ${
+                className={` flex md:flex-row flex-col justify-start items-center ${
                   showWishlist ? "font-bold text-black text-2xl" : ""
-                }py-2 text-start my-10 pl-8 hover:text-black hover:font-semibold cursor-pointer text-gray-700`}
+                }py-2 text-start md:my-10 md:pl-8 hover:text-black hover:font-semibold cursor-pointer text-gray-700`}
               >
                 <FontAwesomeIcon
                   className=" w-10 h-5 border-black p-2"
@@ -159,7 +159,7 @@ const Wishlist = () => {
               </li>
               <li
                 onClick={() => LogoutUser(true)}
-                className="flex justify-start items-center py-2 text-start my-10 pl-8 hover:text-black hover:font-semibold cursor-pointer text-gray-700"
+                className="hidden md:flex justify-start items-center py-2 text-start my-10 pl-8 hover:text-black hover:font-semibold cursor-pointer text-gray-700"
               >
                 <FontAwesomeIcon
                   className=" w-10 h-5 border-black p-2"
@@ -170,13 +170,12 @@ const Wishlist = () => {
             </ul>
           </div>
         </div>
-
         <div
-          className={`  border-red-500 w-[65%] py-24 pl-10 ${
+          className={`w-full  border-red-500 md:w-[65%] nd:py-24 py-20 md:pl-10 md:px-0 px-5 ${
             showWishlist ? "block" : "hidden"
           }`}
         >
-          <div className=" w-full border-red-500">
+          <div className="w-full  border-red-500">
             {data !== null && data.length > 0 ? (
               <div>
                 <ul className="flex flex-wrap w-[90%] ml-5 p-5 rounded-xl shadow-slate-200	border border-gray-300 shadow-lg ">
@@ -184,10 +183,10 @@ const Wishlist = () => {
                     data.map((item, index) => (
                       <li
                         key={index}
-                        className="flex hover:scale-105 transition duration-300 flex-col m-2 items-center rounded-xl shadow-slate-300	border border-gray-300  shadow-lg w-60 p-5"
+                        className="flex md:hover:scale-105 transition duration-300 flex-col m-2 items-center rounded-xl shadow-slate-300	border border-gray-300  shadow-lg w-60 p-5"
                       >
                         <button
-                          className="absolute -top-3 -right-3 bg-black text-white  w-6 h-7 rounded-full  flex justify-center cursor-pointer"
+                          className="absolute md:-top-3 md:-right-3 top-[32%] right-[26%] bg-black text-white  w-6 h-7 rounded-full  flex justify-center cursor-pointer"
                           onClick={() => removeItemFromWishlist(item.id)} // Call removeItemFromWishlist function
                         >
                           x
@@ -252,14 +251,14 @@ const Wishlist = () => {
               </div>
             ) : (
               <div>
-                <div className="flex flex-col items-center justify-start w-[80%] h-full ml-5 p-5 rounded-xl shadow-slate-200	border border-gray-300 shadow-lg ">
+                <div className="flex flex-col items-center justify-start md:w-[80%] h-full md:ml-5 p-5 md:rounded-xl shadow-slate-200	border border-gray-300 shadow-lg ">
                   <img className="w-44" alt="cart_img" src={cart_img} />
-                  <p className=" my-5 w-[50%] text-center font-semibold text-gray-600">
-                    Your desires are our priority, but alas,
-                    <br /> your wishlist is yet to be adorned with treasures.
+                  <p className=" my-5 md:w-[50%] text-center font-semibold text-gray-600">
+                    Your desires are our priority, but alas, your wishlist is
+                    yet to be adorned with treasures.
                   </p>
-                  <p className="font-semibold text-gray-600">
-                    You can curate a list and buy items later{" "}
+                  <p className="font-semibold text-gray-600 text-center">
+                    You can curate a list and buy items later
                   </p>
                   <Link to="/searchPage">
                     <button className=" rounded-sm my-5 p-2 shadow-slate-600 font-semibold	 shadow-lg bg-black text-sm text-white">
@@ -273,7 +272,7 @@ const Wishlist = () => {
         </div>
 
         <div
-          className={`border-red-500 w-[75%] py-32 pr-32 pl-10 ${
+          className={` border-red-500 md:w-[75%] mt-20 md:mt-0 md:py-32 md:pr-32 md:pl-10 md:px-0 px-5 ${
             showProfile ? "block" : "hidden"
           } `}
         >
@@ -289,15 +288,17 @@ const Wishlist = () => {
           </div>
         </div>
         <div
-          className={`border-red-500 w-[65%] py-32 pr-32 pl-10 ${
+          className={`border-red-500 md:w-[65%] md:py-32 md:pr-32 md:pl-10 mt-32 md:mt-0 md:px-0 px-5 ${
             showOrder ? "block" : "hidden"
           } `}
         >
-          <div className="  -mt-14">{<Orders show={showOrder} />}</div>
+          <div className="  md:-mt-11 -mt-14">
+            {<Orders show={showOrder} />}
+          </div>
         </div>
       </div>
       {/* <Footer /> */}
-      <div className="w-full">
+      <div className=" md:hidden w-full">
         <FooterMenu />
       </div>
     </>

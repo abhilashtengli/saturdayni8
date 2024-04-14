@@ -71,7 +71,7 @@ const Products = ({ param, limit }) => {
                   src={item.imageURL}
                 />
                 <ul className="pl-1">
-                  <li className="text-gray-700">{item.name}</li>
+                  <li className="text-gray-700 overflow-auto">{item.name}</li>
                   <li className="text-sm text-gray-700">Rs.{item.price}</li>
                   <li className="text-sm font-semibold text-gray-500 my-1">
                     <ul className="flex">

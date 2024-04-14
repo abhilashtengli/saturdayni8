@@ -26,7 +26,7 @@ const Header = ({ showButton }) => {
         <div className="md:flex md:items-center">
           <div className="px-2">
             <FontAwesomeIcon
-              className=" md:hidden w-8 h-8 text-black"
+              className=" md:hidden w-5 h-8 text-black"
               icon={faBars}
               onClick={toggleMenu}
             />
@@ -41,7 +41,11 @@ const Header = ({ showButton }) => {
         </div>
 
         <Link to="/">
-          <img className="w-44 md:w-60 md:ml-60" alt="" src={saturdayni8} />
+          <img
+            className="w-24 ml-1 md:w-60 md:ml-60"
+            alt=""
+            src={saturdayni8}
+          />
         </Link>
         <div className=" md:hidden">
           <GenderButton showButton={showButton} />
@@ -74,11 +78,11 @@ const Header = ({ showButton }) => {
             <li className="md:px-2">
               <Link to="/cart">
                 <FontAwesomeIcon
-                  className="md:w-8 md:h-5 text-black"
+                  className="md:w-7 md:h-5 text-black"
                   icon={faCartShopping}
                 />
                 <h1
-                  className={`absolute top-3 right-4 bg-green-400 ${
+                  className={`absolute md:top-7 md:right-12 bg-green-400 ${
                     cart.length === 0 ? "hidden" : "block"
                   } text-black font-semibold w-fit px-2 text-sm py-0 rounded-full`}
                 >
@@ -90,7 +94,7 @@ const Header = ({ showButton }) => {
           <div className="md:hidden">
             <Link to="/searchpage">
               <FontAwesomeIcon
-                className="w-8 h-8 text-black"
+                className="w-7 h-7 text-black"
                 icon={faMagnifyingGlass}
               />
             </Link>
@@ -100,7 +104,7 @@ const Header = ({ showButton }) => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className=" z-10 md:hidden absolute top-[77px] right-0 left-0 bg-white shadow-md rounded-md transition duration-500 ease-in-out transform translate-x-0">
+        <div className=" z-1 fixed md:hidden  top-[62px] right-0 left-0 bg-white shadow-md rounded-bl-md rounded-br-md transition duration-500 ease-in-out transform translate-x-0">
           <ul>
             <li className="px-4 py-2">
               <Link to="/profile">Profile</Link>

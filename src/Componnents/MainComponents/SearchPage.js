@@ -99,8 +99,8 @@ const SearchPage = () => {
                       alt={item.name}
                       src={item.imageURL}
                     />
-                    <ul className="md:ml-5  border-red-500 pl-2">
-                      <li className=" border-blue-500 text-sm font-semibold text-gray-500">
+                    <ul className="md:ml-5  border-red-500 pl-1">
+                      <li className=" border-blue-500 text-sm w text-gray-500">
                         {item.name}
                       </li>
                       <li className=" border-blue-500 ">Rs.{item.price}</li>
@@ -122,7 +122,7 @@ const SearchPage = () => {
         </div>
       </div>
       {/* <Footer /> */}
-      <div className="w-full">
+      <div className=" md:hidden w-full">
         <FooterMenu />
       </div>
     </>

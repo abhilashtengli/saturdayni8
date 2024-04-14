@@ -19,7 +19,7 @@ const LandingPage = () => {
       </div>
 
       {/* <Footer /> */}
-      <div className="w-full">
+      <div className=" md:hidden w-full">
         <FooterMenu />
       </div>
     </>

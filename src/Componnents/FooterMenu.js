@@ -11,7 +11,7 @@ const FooterMenu = () => {
         <Link to="/">
           <h1>
             <FontAwesomeIcon
-              className=" md:hidden w-8 h-8 text-black"
+              className=" w-7 h-7 text-black"
               icon={faHome}
             />
           </h1>
@@ -19,7 +19,7 @@ const FooterMenu = () => {
         <Link to="/profile">
           <h1>
             <FontAwesomeIcon
-              className=" md:hidden w-8 h-8 text-black"
+              className=" w-7 h-7 text-black"
               icon={faUser}
             />
           </h1>
@@ -27,7 +27,7 @@ const FooterMenu = () => {
         <Link to="/wishlist">
           <h1>
             <FontAwesomeIcon
-              className=" md:hidden w-8 h-8 text-black"
+              className=" w-7 h-7 text-black"
               icon={faHeart}
             />
           </h1>
@@ -35,7 +35,7 @@ const FooterMenu = () => {
         <Link to="/cart">
           <h1>
             <FontAwesomeIcon
-              className=" md:hidden w-8 h-8 text-black"
+              className=" w-7 h-7 text-black"
               icon={faCartShopping}
             />
           </h1>

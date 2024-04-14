@@ -15,7 +15,7 @@ const FemaleCategoryButton = () => {
       <ul className="border-red-500 flex justify-center items-center">
         <li
           onClick={() => setSelectedType("skirt")}
-          className={`cursor-pointer mx-2 px-4 py-1 border-black border rounded-2xl ${
+          className={`cursor-pointer mx-2 px-4 py-1 text-sm border-black border rounded-2xl ${
             type === "skirt" ? "bg-black text-white" : ""
           }`}
         >
@@ -23,7 +23,7 @@ const FemaleCategoryButton = () => {
         </li>
         <li
           onClick={() => setSelectedType("croptop")}
-          className={`cursor-pointer mx-2 px-4 py-1 border-black border rounded-2xl ${
+          className={`cursor-pointer mx-2 px-4 py-1 text-sm border-black border rounded-2xl ${
             type === "croptop" ? "bg-black text-white" : ""
           }`}
         >
@@ -31,7 +31,7 @@ const FemaleCategoryButton = () => {
         </li>
         <li
           onClick={() => setSelectedType("jeans")}
-          className={`cursor-pointer mx-2 px-4 py-1 border-black border rounded-2xl ${
+          className={`cursor-pointer mx-2 px-4 py-1 text-sm border-black border rounded-2xl ${
             type === "jeans" ? "bg-black text-white" : ""
           }`}
         >
@@ -39,7 +39,7 @@ const FemaleCategoryButton = () => {
         </li>
         <li
           onClick={() => setSelectedType("tshirt")}
-          className={`cursor-pointer mx-2 px-4 py-1 border-black border rounded-2xl ${
+          className={`hidden md:block cursor-pointer mx-2 px-4 py-1 text-sm border-black border rounded-2xl ${
             type === "tshirt" ? "bg-black text-white" : ""
           }`}
         >
@@ -47,7 +47,7 @@ const FemaleCategoryButton = () => {
         </li>
         <li
           onClick={() => setSelectedType("partywear")}
-          className={`cursor-pointer mx-2 px-4 py-1 border-black border rounded-2xl ${
+          className={`hidden md:block cursor-pointer mx-2 px-4 py-1 text-sm border-black border rounded-2xl ${
             type === "partywear" ? "bg-black text-white" : ""
           }`}
         >

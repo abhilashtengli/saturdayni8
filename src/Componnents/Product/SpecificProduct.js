@@ -8,6 +8,7 @@ import { addItem } from "../../ReduxStore/cartSlice";
 import { addWishlistItem } from "../../ReduxStore/wishlistSlice";
 import Footer from "../MainComponents/Footer";
 import Products from "./Products";
+import FooterMenu from "../FooterMenu";
 
 const SpecificProduct = () => {
   const { id } = useParams();
@@ -55,6 +56,8 @@ const SpecificProduct = () => {
     if (itemsExistInWishlist) {
       setIsPresentInWishlist(true);
     }
+    setSize("");
+    setToWishlist("");
   }, [id, mensData, womensData]);
 
   const scrollToTop = () => {
@@ -65,19 +68,22 @@ const SpecificProduct = () => {
     <>
       <Header />
 
-      <div className=" border-red-600 p-10">
+      <div className=" border-red-600 md:px-10 md:pt-10">
         {productToShow.map((item) => (
-          <div key={item.id} className="flex justify-center ">
-            <div className=" w-[50%] border-black flex justify-center">
+          <div
+            key={item.id}
+            className="flex-col  flex md:flex-row justify-center "
+          >
+            <div className="md:w-[45%] border-black flex justify-center">
               <img
                 alt={item.name}
                 src={item.imageURL}
-                className="w-[75%] h-[80%]"
+                className="md:w-[70%] md:h-[70%]"
               />
             </div>
 
-            <div className=" border-black w-[50%] pl-10">
-              <h1 className=" border-red-500 text-3xl py-2 tracking-widest ">
+            <div className=" border-black flex md:block justify-center items-center flex-col md:w-[50%] md:pl-10">
+              <h1 className=" border-red-500 text-3xl py-2 tracking-widest text-center">
                 {item.name.toUpperCase()}
               </h1>
               <ul className="flex  text-gray-600 border-red-500 gap-x-5">
@@ -90,10 +96,10 @@ const SpecificProduct = () => {
               <p className=" border-red-500 text-gray-600">
                 (Incl. of all taxes)
               </p>
-              <p className=" border-red-500 text-gray-600 tracking-widest pt-10">
+              <p className=" border-red-500 text-gray-600 tracking-widest md:pt-10">
                 SELECT A SIZE
               </p>
-              <ul className="flex  border-red-500 text-gray-600 py-2">
+              <ul className="flex md:w-0 w-full justify-center md:justify-normal pl-4 md:pl-0 border-red-500 text-gray-600 py-2">
                 {item.size.map((s) => (
                   <li
                     key={s}
@@ -112,7 +118,7 @@ const SpecificProduct = () => {
                 <h1 className="tracking-widest text-gray-600 text-sm">
                   QUANTITY
                 </h1>
-                <div className="flex mt-2 items-center w-fit border ">
+                <div className="border border-black flex md:mt-2 items-center md:w-fit mt-2 ">
                   <button
                     className="px-3 py-1 hover:bg-gray-200  "
                     onClick={() => decreaseQuantity()}
@@ -129,7 +135,7 @@ const SpecificProduct = () => {
                 </div>
               </div>
 
-              <div className=" border-red-500 mt-10">
+              <div className="w-full md:px-0 px-10  border-red-500 mt-10">
                 {!userSize ? (
                   <button className="bg-gray-100 border text-gray-400 py-3 w-full  tracking-widest">
                     SELECT A SIZE
@@ -143,7 +149,7 @@ const SpecificProduct = () => {
                   </button>
                 )}
               </div>
-              <div className=" border-red-500 mt-5">
+              <div className="w-full  md:px-0 px-10 border-red-500 mt-5">
                 {!isPresentInWishlist && !wishlist ? (
                   <button
                     onClick={() =>
@@ -177,7 +183,10 @@ const SpecificProduct = () => {
         </Link>
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
+      <div className="w-full">
+        <FooterMenu />
+      </div>
     </>
   );
 };

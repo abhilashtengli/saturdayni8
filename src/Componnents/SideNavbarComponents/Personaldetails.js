@@ -19,7 +19,7 @@ const Personaldetails = ({ show }) => {
   return (
     <>
       <div
-        className={`container  border-black mx-auto mt-8 px-12 ${
+        className={`container  border-black mx-auto mt-8 md:px-12 ${
           show ? "block" : "hidden"
         }`}
       >
@@ -52,6 +52,19 @@ const Personaldetails = ({ show }) => {
               />
             </div>
             <div>
+              <label htmlFor="birthDate" className="block mb-2 text-gray-600">
+                Birth Date:
+              </label>
+              <input
+                type="date"
+                id="birthDate"
+                name="birthDate"
+                value={formData.birthDate}
+                onChange={handleChange}
+                className="border border-gray-300 bg-blue-50 px-3 py-2  text-gray-700  rounded-md w-full"
+              />
+            </div>
+            <div>
               <label
                 htmlFor="contactNumber"
                 className="block mb-2 text-gray-600"
@@ -67,19 +80,7 @@ const Personaldetails = ({ show }) => {
                 className="border border-gray-300 bg-blue-50 px-3  text-gray-700  py-2 rounded-md w-full"
               />
             </div>
-            <div>
-              <label htmlFor="birthDate" className="block mb-2 text-gray-600">
-                Birth Date:
-              </label>
-              <input
-                type="date"
-                id="birthDate"
-                name="birthDate"
-                value={formData.birthDate}
-                onChange={handleChange}
-                className="border border-gray-300 bg-blue-50 px-3 py-2  text-gray-700  rounded-md w-full"
-              />
-            </div>
+
             <div>
               <label htmlFor="gender" className="block mb-2 text-gray-600">
                 Gender:
