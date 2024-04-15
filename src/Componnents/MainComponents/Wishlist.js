@@ -175,15 +175,15 @@ const Wishlist = () => {
             showWishlist ? "block" : "hidden"
           }`}
         >
-          <div className="w-full  border-red-500 md:mt-0 -mt-16">
+          <div className="w-full  border-red-500 lg:mt-0 -mt-16">
             {data !== null && data.length > 0 ? (
               <div>
-                <ul className="flex flex-wrap md:w-[90%] gap-y-3 gap-x-3 justify-center md:justify-normal md:ml-5 md:p-5 p-2  rounded-xl shadow-slate-200	border  border-gray-300 shadow-lg ">
+                <ul className="flex flex-wrap md:w-full lg:w-[90%] gap-y-3 gap-x-3 justify-center md:justify-normal lg:ml-5 lg:p-5 p-2  rounded-xl shadow-slate-200	border  border-gray-300 shadow-lg ">
                   {data &&
                     data.map((item, index) => (
                       <li
                         key={index}
-                        className="flex w-fit md:hover:scale-105 transition duration-300 flex-col md:m-2 items-center rounded-xl shadow-slate-200	border   border-gray-200 px-2 py-2  shadow-lg md:w-60 md:p-5"
+                        className="flex w-fit md:hover:scale-105 transition duration-300 flex-col md:m-2 items-center rounded-xl shadow-slate-200	 border  lg:border-gray-200 px-2 py-2  shadow-lg lg:w-60 md:p-5"
                       >
                         <button
                           className="absolute md:-top-3 md:-right-3 md:ml-0 ml-40 md:mt-0 -mt-4 bg-black text-white  w-6 h-7 rounded-full  flex justify-center cursor-pointer"
@@ -301,7 +301,9 @@ const Wishlist = () => {
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
+      <div className="hidden md:block lg:block">
+        <Footer />
+      </div>{" "}
       <div className=" md:hidden w-full">
         <FooterMenu />
       </div>

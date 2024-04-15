@@ -65,8 +65,7 @@ const SpecificProduct = () => {
   return (
     <>
       <Header />
-
-      <div className=" border-red-600 md:px-10 md:pt-10">
+      <div className=" border-red-600 md:px-10 md:mb-10 lg:pt-10">
         {productToShow.map((item) => (
           <div
             key={item.id}
@@ -171,7 +170,6 @@ const SpecificProduct = () => {
           </div>
         ))}
       </div>
-
       <Products onClick={scrollToTop()} param={""} limit={12} />
       <div className="flex justify-center py-10">
         <Link to="/searchpage">
@@ -180,8 +178,9 @@ const SpecificProduct = () => {
           </button>
         </Link>
       </div>
-
-      {/* <Footer /> */}
+      <div className="hidden md:block lg:block">
+        <Footer />
+      </div>{" "}
       <div className="md:hidden w-full">
         <FooterMenu />
       </div>

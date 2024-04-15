@@ -24,7 +24,7 @@ const Header = ({ showButton }) => {
   return (
     <>
       <div className="w-full z-10 sticky top-0 bg-white  border-red-500 flex justify-between items-center p-3 shadow-lg">
-        <div className="md:flex md:items-center">
+        <div className="md:flex md:items-center justify-between">
           <div className="px-2">
             <FontAwesomeIcon
               className=" md:hidden w-5 h-8 text-black"
@@ -43,7 +43,7 @@ const Header = ({ showButton }) => {
 
         <Link to="/">
           <img
-            className="w-24 ml-1 md:w-60 md:ml-60"
+            className="w-24 md:block ml-1 md:w-60 lg:ml-60  border-red-500"
             alt=""
             src={saturdayni8}
           />
@@ -75,12 +75,12 @@ const Header = ({ showButton }) => {
                   icon={faHeart}
                 />
                 <h1
-            className={`absolute top-7 right-28 bg-red-500 ${
-              wishlist.length === 0 ? "hidden" : "block"
-            } text-black font-semibold w-fit px-2 text-xs py-0 rounded-full`}
-          >
-            {wishlist.length}
-          </h1>
+                  className={`absolute top-7 right-28 bg-red-500 ${
+                    wishlist.length === 0 ? "hidden" : "block"
+                  } text-black font-semibold w-fit px-2 text-xs py-0 rounded-full`}
+                >
+                  {wishlist.length}
+                </h1>
               </Link>
             </li>
             <li className="md:px-2">
@@ -112,7 +112,7 @@ const Header = ({ showButton }) => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className=" z-10 fixed md:hidden  top-[62px] right-0 left-0 bg-white shadow-md rounded-bl-md rounded-br-md transition duration-500 ease-in-out transform translate-x-0">
+        <div className=" z-10 fixed md:hidden  top-[59px] right-0 left-0 bg-white shadow-md rounded-bl-md rounded-br-md transition duration-500 ease-in-out transform translate-x-0">
           <ul>
             <li className="px-4 py-2">
               <Link to="/profile">Profile</Link>
@@ -122,6 +122,21 @@ const Header = ({ showButton }) => {
             </li>
             <li className="px-4 py-2">
               <Link to="/cart">Cart</Link>
+            </li>
+            <li className="px-4 py-2">
+              <Link to="/">Contact Us</Link>
+            </li>
+            <li className="px-4 py-2">
+              <Link to="/">FAQ's</Link>
+            </li>
+            <li className="px-4 py-2">
+              <Link to="/">Track order</Link>
+            </li>
+            <li className="px-4 py-2">
+              <Link to="/">Terms & Conditions</Link>
+            </li>
+            <li className="px-4 py-2">
+              <Link to="/">Log Out</Link>
             </li>
           </ul>
         </div>

@@ -53,7 +53,7 @@ const SearchPage = () => {
           />
         </div>
 
-        <div className=" border-black flex  md:justify-between py-16 md:py-14 md:p-10">
+        <div className=" border-black  flex  md:justify-between py-16 md:py-14 md:p-10">
           <div className=" hidden md:block w-80 h-96  border-red-500 p-10 shadow-lg bg-white sticky left-0 top-56">
             <h1 className="font-semibold text-gray-600">Popular Searches</h1>
             {gender === "male" ? (
@@ -84,7 +84,7 @@ const SearchPage = () => {
               </div>
             )}
           </div>
-          <div className="border-black  w-full p-1 md:w-[70%]">
+          <div className="border-black   w-full p-1 md:w-[70%]">
             <div className="flex flex-wrap justify-center md:justify-normal gap-x-7 gap-y-7 md:gap-y-0 md:gap-x-10">
               {producttoShow.map((item) =>
                 item.name.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -92,7 +92,7 @@ const SearchPage = () => {
                   <div
                     key={item.id}
                     onClick={() => specificProductFunction(item.id)}
-                    className=" md:w-96 m-2 cursor-pointer flex-col justify-between md:justify-normal flex md:flex-row md:bg-gray-50 md:shadow-lg md:p-1 md:rounded-lg md:border-none border-black border"
+                    className=" md:w-96 m-2 cursor-pointer flex-col justify-between border md:justify-normal flex md:flex-row md:bg-gray-50 md:shadow-lg md:p-1 md:rounded-lg md:border-none"
                   >
                     <img
                       className="w-40 md:w-24 border-red-500 md:rounded-lg"
@@ -121,7 +121,9 @@ const SearchPage = () => {
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
+      <div className="hidden md:block lg:block">
+        <Footer />
+      </div>{" "}
       <div className=" md:hidden w-full">
         <FooterMenu />
       </div>

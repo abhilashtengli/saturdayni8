@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-      <div className="flex justify-between border-t-2 border-gray-200 p-10 pb-24 text-gray-700 px-52">
+      <div className="flex justify-between border-t-2 border-gray-200 p-10 pb-24 text-gray-700 lg:px-52">
         <ul className="mx-10">
           <h1 className="text-xl tracking-widest mb-5">Get to know us</h1>
           <li className="text-sm tracking-widest ">Contact Us</li>

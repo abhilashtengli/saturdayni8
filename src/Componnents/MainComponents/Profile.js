@@ -122,7 +122,9 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      {/* <Footer/> */}
+      <div className="hidden md:block lg:block">
+        <Footer />
+      </div>{" "}
       <div className="  md:hidden w-full">
         <FooterMenu />
       </div>
