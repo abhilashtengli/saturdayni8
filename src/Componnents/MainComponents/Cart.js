@@ -79,7 +79,7 @@ const Cart = () => {
       ) : (
         ""
       )}
-      <div className=" border-red-500  w-full md:py-20 md:bg-gray-100  md:px-32 px-1 md:mt-0 mt-10">
+      <div className=" border-red-500  w-full md:py-20 md:bg-gray-100  md:px-32 px-1 md:mt-0 ">
         <div className=" md:flex border rounded-tl-2xl md:rounded-tr-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl shadow-2xl md:rounded-2xl">
           <div className=" md:w-[70%] md:p-10 md:rounded-tl-2xl md:rounded-bl-2xl rounded-tl-2xl  md:rounded-tr-none rounded-tr-2xl  bg- pb-10">
             <header className=" flex justify-between items-center border-b-2 px-3 border-gray-200 md:py-0 py-5 md:pb-12">
