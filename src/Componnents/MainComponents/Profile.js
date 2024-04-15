@@ -105,7 +105,7 @@ const Profile = () => {
             </ul>
           </div>
         </div>
-        <div className="border-red-500 w-full md:w-[75%] py-10 px-5 md:px-0 md:pl-12 md:pr-44">
+        <div className="border-red-500 w-full md:w-[75%] py-10 md:pl-12 md:pr-44">
           <div className="">
             <h1 className="text-center text-3xl"> Helloo!!!</h1>
             <div className=" border-blue-500">
@@ -115,7 +115,7 @@ const Profile = () => {
               <div className=" border-black  md:p-10 ">
                 {<DeliveryAddress show={showAddress} />}
               </div>
-              <div className="border-black  md:-mt-9">
+              <div className="border-black border md:-mt-9">
                 {<Orders show={showOrder} />}
               </div>
             </div>
