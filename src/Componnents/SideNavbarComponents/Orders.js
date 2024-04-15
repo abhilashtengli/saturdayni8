@@ -12,8 +12,8 @@ const Orders = ({ show }) => {
           {orders.map((item) => (
             <div className="  border-gray-300 border-b-2 pb-2 md:px-2 mb-5">
               <section className="flex justify-between items-center">
-                <img className="w-16" alt={item.name} src={item.imageURL} />
-                <div className="w-40  border-red-500">
+                <img className="w-12" alt={item.name} src={item.imageURL} />
+                <div className="w-40  border-red-500 ml-1">
                   <h1 className="text-gray-500 font-semibold text-sm">
                     {item.category.toUpperCase()}
                   </h1>
@@ -25,7 +25,7 @@ const Orders = ({ show }) => {
                   </h1>
                 </div>
                 <h1>{item.userQuantity}</h1>
-                <h1 className="text-sm font-semibold text-gray-700">
+                <h1 className="text-sm font-semibold mr-2 text-gray-700">
                   Rs.{item.userQuantity * item.price}/-
                 </h1>
                 <p className="text-black bg-green-400 font-semibold text-xs text-center  rounded-lg p-1 px-2 h-fit ">

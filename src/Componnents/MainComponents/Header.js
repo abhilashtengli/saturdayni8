@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 
 const Header = ({ showButton }) => {
   const cart = useSelector((state) => state.cart.items);
+  const wishlist = useSelector((state) => state.wishlist.items);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -73,6 +74,13 @@ const Header = ({ showButton }) => {
                   className="md:w-8 md:h-5 text-black"
                   icon={faHeart}
                 />
+                <h1
+            className={`absolute top-7 right-28 bg-red-500 ${
+              wishlist.length === 0 ? "hidden" : "block"
+            } text-black font-semibold w-fit px-2 text-xs py-0 rounded-full`}
+          >
+            {wishlist.length}
+          </h1>
               </Link>
             </li>
             <li className="md:px-2">
@@ -84,7 +92,7 @@ const Header = ({ showButton }) => {
                 <h1
                   className={`absolute md:top-7 md:right-12 bg-green-400 ${
                     cart.length === 0 ? "hidden" : "block"
-                  } text-black font-semibold w-fit px-2 text-sm py-0 rounded-full`}
+                  } text-black font-semibold w-fit px-2 text-xs py-0 rounded-full`}
                 >
                   {cart.length}
                 </h1>
@@ -104,7 +112,7 @@ const Header = ({ showButton }) => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className=" z-1 fixed md:hidden  top-[62px] right-0 left-0 bg-white shadow-md rounded-bl-md rounded-br-md transition duration-500 ease-in-out transform translate-x-0">
+        <div className=" z-10 fixed md:hidden  top-[62px] right-0 left-0 bg-white shadow-md rounded-bl-md rounded-br-md transition duration-500 ease-in-out transform translate-x-0">
           <ul>
             <li className="px-4 py-2">
               <Link to="/profile">Profile</Link>

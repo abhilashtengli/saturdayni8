@@ -100,7 +100,7 @@ const Cart = () => {
                     alt={item.name}
                     src={item.imageURL}
                   />
-                  <div className="w-38  border-red-500 pt-4 md:pt-0 ">
+                  <div className="w-40  border-red-500 pt-4 md:pt-0 ">
                     <h1 className="text-gray-500 font-semibold text-xs">
                       {item.category.toUpperCase()}
                     </h1>
@@ -112,7 +112,7 @@ const Cart = () => {
                     </h1>
                   </div>
 
-                  <div className="flex md:mt-2 items-center w-fit h-fit border mt-10 md:mr-0 mr-4 ">
+                  <div className="flex md:mt-2 items-center w-fit h-fit border mt-10 md:mr-0  ">
                     <button
                       className="md:px-3 px-1.5 py-0.5 md:py-1 hover:bg-gray-200  "
                       onClick={() => decreaseQuantity(item.id, item.price)}
@@ -129,7 +129,7 @@ const Cart = () => {
                       +
                     </button>
                   </div>
-                  <h1 className="text-sm font-semibold mt-12 md:mt-0 text-gray-700">
+                  <h1 className="text-sm font-semibold md:ml-0 ml-4 mt-12 md:mt-0 text-gray-700">
                     Rs.{selectedQuantities[item.id] * item.price}/-
                   </h1>
                   <button

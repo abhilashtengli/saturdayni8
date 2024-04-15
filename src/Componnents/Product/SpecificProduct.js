@@ -17,9 +17,9 @@ const SpecificProduct = () => {
   const [productToShow, setProductToShow] = useState([]);
   const [userQuantity, setQuantity] = useState(1);
   const [userSize, setSize] = useState();
-  const [wishlist, setToWishlist] = useState();
+  // const [wishlist, setToWishlist] = useState();
   const wishListItems = useSelector((state) => state.wishlist.items);
-  const [isPresentInWishlist, setIsPresentInWishlist] = useState(false);
+  const [isPresentInWishlist, setIsPresentInWishlist] = useState({});
   const dispatch = useDispatch();
 
   const addItemToCart = (item, userQuantity, userSize) => {
@@ -27,7 +27,7 @@ const SpecificProduct = () => {
   };
 
   const AddingToWishlist = (item, userQuantity, userSize) => {
-    setToWishlist(item);
+    // setToWishlist(item);
     dispatch(addWishlistItem({ item, userQuantity, userSize }));
   };
   const settingTheSize = (s) => {
@@ -52,13 +52,11 @@ const SpecificProduct = () => {
     setProductToShow(filteredData);
 
     const itemsExistInWishlist = wishListItems.some((item) => item.id === id);
+    setIsPresentInWishlist(itemsExistInWishlist); // Set to true or false directly
 
-    if (itemsExistInWishlist) {
-      setIsPresentInWishlist(true);
-    }
     setSize("");
-    setToWishlist("");
-  }, [id, mensData, womensData]);
+    // setToWishlist("");
+  }, [id, mensData, womensData, wishListItems]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -150,7 +148,7 @@ const SpecificProduct = () => {
                 )}
               </div>
               <div className="w-full  md:px-0 px-10 border-red-500 mt-5">
-                {!isPresentInWishlist && !wishlist ? (
+                {!isPresentInWishlist ? (
                   <button
                     onClick={() =>
                       AddingToWishlist(item, userQuantity, userSize)
@@ -184,7 +182,7 @@ const SpecificProduct = () => {
       </div>
 
       {/* <Footer /> */}
-      <div className="w-full">
+      <div className="md:hidden w-full">
         <FooterMenu />
       </div>
     </>

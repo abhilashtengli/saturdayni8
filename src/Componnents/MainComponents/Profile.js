@@ -43,7 +43,7 @@ const Profile = () => {
     <>
       <Header />
       <div className="md:flex">
-        <div className=" border-red-500 md:w-[25%] md:p-10 md:pt-20 mt-10 md:px-0 px-5">
+        <div className=" border-red-500 md:w-[25%] md:p-10 md:pt-20 mt-10 md:px-0 px-3">
           <div className="md:flex md:justify-end">
             <ul className="md:gap-x-0 md:gap-y-0 gap-x-3 flex justify-between md:px-0 px-5 md:py-0 py-7 md:block  border  shadow-slate-200 md:rounded-xl w-full md:border-gray-300 shadow-lg md:w-60">
               <li
@@ -90,7 +90,7 @@ const Profile = () => {
                   className=" w-10 h-5 border-black p-2"
                   icon={faHeart}
                 />
-                My Wishlist
+                Wishlist
               </li>
               <li
                 onClick={() => LogoutUser(true)}
@@ -115,7 +115,7 @@ const Profile = () => {
               <div className=" border-black  md:p-10 ">
                 {<DeliveryAddress show={showAddress} />}
               </div>
-              <div className="border-black border md:-mt-9">
+              <div className="border-black  md:-mt-9">
                 {<Orders show={showOrder} />}
               </div>
             </div>

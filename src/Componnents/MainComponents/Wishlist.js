@@ -106,9 +106,9 @@ const Wishlist = () => {
     <>
       <Header />
       <div className="md:flex ">
-        <div className="border-red-500 md:w-[25%] md:p-10 md:pt-20 mt-10 md:mt-0 px-5 md:px-0 ">
+        <div className="border-red-500 md:w-[25%] md:p-10 md:pt-20 mt-10 md:mt-0 px-3 md:px-0 ">
           <div className="md:flex md:justify-end ">
-            <ul className="md:gap-x-0 md:gap-y-0 gap-x-3 flex justify-between md:px-0 px-5 md:py-0 py-3  md:block  border shadow-slate-400 md:rounded-xl w-full md:border-gray-300 shadow-lg md:w-60">
+            <ul className="md:gap-x-0 md:gap-y-0 gap-x-3 flex justify-between md:px-0 px-5 md:py-0 py-3  md:block  border shadow-slate-200 md:rounded-xl w-full md:border-gray-300 shadow-lg md:w-60">
               <li
                 onClick={() => ProfileSetting(true)}
                 className={` flex md:flex-row flex-col justify-start items-center ${
@@ -131,7 +131,7 @@ const Wishlist = () => {
                   className=" w-10 h-5 border-black p-2"
                   icon={faLocationDot}
                 />
-                Deliver Address
+                Address
               </li>
               <li
                 onClick={() => OrderSetting(true)}
@@ -143,7 +143,7 @@ const Wishlist = () => {
                   className=" w-10 h-5 border-black p-2"
                   icon={faBagShopping}
                 />
-                My Orders
+                Orders
               </li>
               <li
                 onClick={() => wishlistSetting(true)}
@@ -155,7 +155,7 @@ const Wishlist = () => {
                   className=" w-10 h-5 border-black p-2"
                   icon={faHeart}
                 />
-                My Wishlist
+                Wishlist
               </li>
               <li
                 onClick={() => LogoutUser(true)}
@@ -175,40 +175,44 @@ const Wishlist = () => {
             showWishlist ? "block" : "hidden"
           }`}
         >
-          <div className="w-full  border-red-500">
+          <div className="w-full  border-red-500 md:mt-0 -mt-16">
             {data !== null && data.length > 0 ? (
               <div>
-                <ul className="flex flex-wrap w-[90%] ml-5 p-5 rounded-xl shadow-slate-200	border border-gray-300 shadow-lg ">
+                <ul className="flex flex-wrap md:w-[90%] gap-y-3 gap-x-3 justify-center md:justify-normal md:ml-5 md:p-5 p-2  rounded-xl shadow-slate-200	border  border-gray-300 shadow-lg ">
                   {data &&
                     data.map((item, index) => (
                       <li
                         key={index}
-                        className="flex md:hover:scale-105 transition duration-300 flex-col m-2 items-center rounded-xl shadow-slate-300	border border-gray-300  shadow-lg w-60 p-5"
+                        className="flex w-fit md:hover:scale-105 transition duration-300 flex-col md:m-2 items-center rounded-xl shadow-slate-200	border   border-gray-200 px-2 py-2  shadow-lg md:w-60 md:p-5"
                       >
                         <button
-                          className="absolute md:-top-3 md:-right-3 top-[32%] right-[26%] bg-black text-white  w-6 h-7 rounded-full  flex justify-center cursor-pointer"
+                          className="absolute md:-top-3 md:-right-3 md:ml-0 ml-40 md:mt-0 -mt-4 bg-black text-white  w-6 h-7 rounded-full  flex justify-center cursor-pointer"
                           onClick={() => removeItemFromWishlist(item.id)} // Call removeItemFromWishlist function
                         >
                           x
                         </button>
-                        <h1 className="mb-2 tracking-widest">{item.name}</h1>
+                        <h1 className="mb-2 md:tracking-widest tracking-wide">
+                          {item.name}
+                        </h1>
                         <img
                           onClick={() => specificProductFunction(item.id)}
-                          className="w-20 cursor-pointer"
+                          className="md:w-20 w-12 cursor-pointer"
                           alt={item.name}
                           src={item.imageURL}
                         />
-                        <p className="tracking-wider">Rs.{item.price}/-</p>
-                        <ul className="flex  border-red-500 text-gray-600 py-2">
+                        <p className="tracking-wider text-xs md:font-semibold md:mt-2 mt-1">
+                          Rs.{item.price}/-
+                        </p>
+                        <ul className="flex gap-x-1 md:gap-x-3 border-red-500  justify-center items-center text-gray-600 md:py-2 py-1">
                           {item.size.map((s) => (
                             <li
                               key={s}
                               onClick={() => setSizeForItem(item.id, s)}
-                              className={`w-8 text-xs p-1 text-center ${
+                              className={`w-8 text-xs md:p-1 p-0.5 text-center ${
                                 selectedSizes[item.id] === s
                                   ? "bg-black text-white"
                                   : "hover:bg-black hover:text-white hover:scale-105"
-                              } tracking-widest cursor-pointer mr-4 border border-black rounded-lg transition duration-300`}
+                              } tracking-widest cursor-pointer  border border-black rounded-lg transition duration-300`}
                             >
                               {s}
                             </li>
@@ -231,7 +235,7 @@ const Wishlist = () => {
                             +
                           </button>
                         </div>
-                        <div className="w-full mt-5">
+                        <div className="w-full md:mt-5 mt-2">
                           {!selectedSizes[item.id] ? (
                             <button className="bg-gray-100 border text-sm text-gray-400 w-full py-1  tracking-widest">
                               SELECT A SIZE
