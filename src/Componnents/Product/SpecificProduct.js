@@ -58,10 +58,6 @@ const SpecificProduct = () => {
     // setToWishlist("");
   }, [id, mensData, womensData, wishListItems]);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <>
       <Header />
@@ -170,7 +166,7 @@ const SpecificProduct = () => {
           </div>
         ))}
       </div>
-      <Products onClick={scrollToTop()} param={""} limit={12} />
+      <Products param={""} limit={12} />
       <div className="flex justify-center py-10">
         <Link to="/searchpage">
           <button className="text-center  border border-gray-200  lg:mb-0 md:mb-0 mb-12  transition duration-200 text-black tracking-widest  hover:border-black px-4 py-1">

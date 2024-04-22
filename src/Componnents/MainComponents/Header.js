@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import sn_logo from "../../Images/SN_logo.png";
+import ms_logo from "../../Images/MS_logo.png";
 import { Link } from "react-router-dom";
-import saturdayni8 from "../../Images/SATURDAYNI8.png";
+import saturdayni8 from "../../Images/MODISSH.png";
 import {
   faMagnifyingGlass,
   faCartShopping,
@@ -36,7 +36,7 @@ const Header = ({ showButton }) => {
             <img
               className="hidden md:block md:w-20 md:ml-2 border-red-500 md:rounded-full"
               alt="sn_logo"
-              src={sn_logo}
+              src={ms_logo}
             />
           </Link>
         </div>

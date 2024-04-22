@@ -24,7 +24,7 @@ const Orders = ({ show }) => {
                     {item.userSize}
                   </h1>
                 </div>
-                <h1>{item.userQuantity}</h1>
+                <h1 className=" mr-5 md:mr-0">{item.userQuantity}</h1>
                 <h1 className="text-sm font-semibold mr-2 text-gray-700">
                   Rs.{item.userQuantity * item.price}/-
                 </h1>

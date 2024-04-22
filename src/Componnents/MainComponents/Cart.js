@@ -80,7 +80,7 @@ const Cart = () => {
         ""
       )}
       <div className=" border-red-500  w-full md:py-20 md:bg-gray-100  md:px-32 px-1 md:mt-0 ">
-        <div className=" md:flex border rounded-tl-2xl md:rounded-tr-none rounded-tr-2xl rounded-bl-2xl rounded-br-2xl shadow-2xl md:rounded-2xl">
+        <div className=" md:flex mb-20 md:mb-0 lg:mb-0  rounded-tl-2xl md:rounded-tr-2xl rounded-tr-2xl rounded-bl-2xl rounded-br-2xl shadow-2xl md:rounded-2xl">
           <div className=" md:w-[70%] md:p-10 md:rounded-tl-2xl md:rounded-bl-2xl rounded-tl-2xl  md:rounded-tr-none rounded-tr-2xl  bg- pb-10">
             <header className=" flex justify-between items-center border-b-2 px-3 border-gray-200 md:py-0 py-5 md:pb-12">
               <h1 className="text-2xl font-bold text-gray-800">
@@ -146,7 +146,7 @@ const Cart = () => {
             </Link>
           </div>
 
-          <div className="border-blue-500  md:w-[30%] md:mt-0 px-2 bg-gray-200 md:rounded-tr-2xl md:rounded-br-2xl md:rounded-bl-none rounded-bl-2xl rounded-br-2xl pb-10 md:pt-0 pt-5">
+          <div className=" md:w-[30%] md:mt-0 px-2 bg-gray-200 md:rounded-tr-2xl md:rounded-br-2xl md:rounded-bl-none rounded-bl-2xl rounded-br-2xl pb-10 md:pt-0 pt-5">
             <header className="md:border-gray-200  md:border-b-2 md:h-28 mt-2 flex items-center md:pt-10 ">
               <h1 className=" border-red-500 text-xl  font-semibold pl-5">
                 Summary
