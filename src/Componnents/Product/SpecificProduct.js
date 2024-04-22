@@ -76,7 +76,7 @@ const SpecificProduct = () => {
             </div>
 
             <div className=" border-black flex md:block justify-center items-center flex-col md:w-[50%] md:pl-10">
-              <h1 className=" border-red-500 text-3xl py-2 tracking-widest text-center">
+              <h1 className=" border-red-500 text-3xl py-2 tracking-widest text-center md:text-start">
                 {item.name.toUpperCase()}
               </h1>
               <ul className="flex  text-gray-600 border-red-500 gap-x-5">
