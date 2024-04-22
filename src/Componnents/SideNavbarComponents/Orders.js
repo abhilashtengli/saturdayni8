@@ -1,10 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import noOrder from "../../Images/no_orders.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Orders = ({ show }) => {
   const orders = useSelector((state) => state.order.items);
-
+  const navigate = useNavigate();
+  const specificProductFunction = (id) => {
+    navigate(`/specificProduct/${id}`);
+  };
   return (
     <>
       {orders.length !== 0 ? (
@@ -12,7 +15,12 @@ const Orders = ({ show }) => {
           {orders.map((item) => (
             <div className="  border-gray-300 border-b-2 pb-2 md:px-2 mb-5">
               <section className="flex justify-between items-center">
-                <img className="w-12" alt={item.name} src={item.imageURL} />
+                <img
+                  onClick={() => specificProductFunction(item.id)}
+                  className="w-12 cursor-pointer"
+                  alt={item.name}
+                  src={item.imageURL}
+                />
                 <div className="w-40  border-red-500 ml-1">
                   <h1 className="text-gray-500 font-semibold text-sm">
                     {item.category.toUpperCase()}

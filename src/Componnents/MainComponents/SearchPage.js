@@ -40,7 +40,7 @@ const SearchPage = () => {
     <>
       <div className="md:bg-gray-100">
         <Header showButton={true} />
-        <div className="border-red-500 px-5 md:px-32 flex items-center sticky top-24 md:top-32 ">
+        <div className="z-10 border-red-500 px-5 md:px-32 flex items-center sticky top-24 md:top-32 ">
           <FontAwesomeIcon
             className="absolute w-10 h-5 border-black p-2 ml-1"
             icon={faMagnifyingGlass}
