@@ -84,7 +84,7 @@ const SearchPage = () => {
               </div>
             )}
           </div>
-          <div className="border-black   w-full p-1 md:w-[70%]">
+          <div className="border-black w-full p-1 md:w-[70%]">
             <div className="flex flex-wrap justify-center md:justify-normal gap-x-7 gap-y-7 md:gap-y-0 md:gap-x-10">
               {producttoShow.map((item) =>
                 item.name.toLowerCase().includes(searchText.toLowerCase()) ||
