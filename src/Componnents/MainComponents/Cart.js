@@ -25,11 +25,16 @@ const Cart = () => {
   };
 
   const settingTotalPrice = () => {
-    setOrderPlaced(true);
+    if (data.length !== 0) {
+      setOrderPlaced(true);
+    }
     dispatch(setTotalProductPrice(totalprice + 69));
     const totalPrice = totalprice + 69;
     dispatch(addItems({ totalPrice, data }));
     dispatch(clearItem());
+    setTimeout(() => {
+      setOrderPlaced(false); // Reset orderPlaced state after a short delay
+    }, 2000);
   };
 
   useEffect(() => {
@@ -40,6 +45,7 @@ const Cart = () => {
         defaultQuantities[item.id] = item.userQuantity;
         totalPrice += item.userQuantity * item.price; // Calculate total price for each item
       });
+
       setShippingPrice(69);
       setSelectedQuantities(defaultQuantities);
       setTotalPrice(totalPrice); // Set the total price

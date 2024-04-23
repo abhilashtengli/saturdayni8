@@ -1,5 +1,4 @@
 import React from "react";
-import banner2 from "../../Images/Banner2.webp";
 import Products from "../Product/Products";
 import MaleCategoryButton from "../Buttons/MaleCategoryButton";
 import FemaleCategoryButton from "../Buttons/FemaleCategoryButton";
