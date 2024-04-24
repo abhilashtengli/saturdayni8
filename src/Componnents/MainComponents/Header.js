@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ms_logo from "../../Images/MS_logo.png";
 import { Link } from "react-router-dom";
-import saturdayni8 from "../../Images/MODISSH.png";
+import modissh from "../../Images/MODISSH.png";
 import {
   faMagnifyingGlass,
   faCartShopping,
   faBars,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart, faUser } from "@fortawesome/free-regular-svg-icons";
 import GenderButton from "../Buttons/GenderButton";
@@ -21,31 +22,43 @@ const Header = ({ showButton }) => {
     setMenuOpen(!menuOpen);
   };
 
+  const scollUp = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <>
-      <div className="w-full z-10 sticky top-0 bg-white  border-red-500 flex justify-between items-center p-3 shadow-lg">
+      <div className="w-full z-30 sticky top-0 bg-white  border-red-500 flex justify-between items-center p-3 shadow-lg">
         <div className="md:flex md:items-center justify-between">
           <div className="px-2">
-            <FontAwesomeIcon
-              className=" md:hidden w-5 h-8 text-black"
-              icon={faBars}
-              onClick={toggleMenu}
-            />
+            {!menuOpen ? (
+              <FontAwesomeIcon
+                className=" md:hidden w-5 h-8 text-black"
+                icon={faBars}
+                onClick={toggleMenu}
+              />
+            ) : (
+              <FontAwesomeIcon
+                className=" md:hidden w-5 h-8 text-black"
+                icon={faXmark}
+                onClick={toggleMenu}
+              />
+            )}
           </div>
-          <Link to="/">
+          <Link to="/" onClick={() => scollUp()}>
             <img
               className="hidden md:block md:w-20 md:ml-2 border-red-500 md:rounded-full"
-              alt="sn_logo"
+              alt="ms_logo"
               src={ms_logo}
             />
           </Link>
         </div>
 
-        <Link to="/">
+        <Link to="/" onClick={() => scollUp()}>
           <img
             className="w-24 md:block ml-1 md:w-60 lg:ml-60  border-red-500"
             alt=""
-            src={saturdayni8}
+            src={modissh}
           />
         </Link>
         <div className=" md:hidden">
@@ -102,7 +115,7 @@ const Header = ({ showButton }) => {
           <div className="md:hidden">
             <Link to="/searchpage">
               <FontAwesomeIcon
-                className="w-7 h-7 text-black"
+                className="w-6 h-6 text-black"
                 icon={faMagnifyingGlass}
               />
             </Link>
@@ -112,7 +125,9 @@ const Header = ({ showButton }) => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className=" z-10 fixed md:hidden  top-[59px] right-0 left-0 bg-white shadow-md rounded-bl-md rounded-br-md transition duration-500 ease-in-out transform translate-x-0">
+        <div
+          className={`animate-top-to-bottom  z-20 fixed md:hidden  top-[59px] right-0 left-0 bg-white shadow-md rounded-bl-md rounded-br-md transition duration-500 ease-in-out transform translate-x-0`}
+        >
           <ul>
             <li className="px-4 py-2">
               <Link to="/profile">Profile</Link>

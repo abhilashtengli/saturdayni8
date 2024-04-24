@@ -14,7 +14,7 @@ const ImageSlider = ({ images, interval }) => {
   }, []);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full md:h-screen lg:h-screen h-96 overflow-hidden">
       {images.map((image, index) => (
         <Transition
           as="div"

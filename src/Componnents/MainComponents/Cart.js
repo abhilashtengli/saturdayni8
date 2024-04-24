@@ -86,7 +86,7 @@ const Cart = () => {
         ""
       )}
       <div className=" border-red-500  w-full md:py-20 md:bg-gray-100  md:px-32 px-1 md:mt-0 ">
-        <div className=" md:flex mb-20 md:mb-0 lg:mb-0  rounded-tl-2xl md:rounded-tr-2xl rounded-tr-2xl rounded-bl-2xl rounded-br-2xl shadow-2xl md:rounded-2xl">
+        <div className=" md:flex mb-20 md:mb-0 lg:mb-0 border border-gray-200 mt-5 rounded-tl-2xl md:rounded-tr-2xl rounded-tr-2xl rounded-bl-2xl rounded-br-2xl shadow-lg md:rounded-2xl">
           <div className=" md:w-[70%] md:p-10 md:rounded-tl-2xl md:rounded-bl-2xl rounded-tl-2xl  md:rounded-tr-none rounded-tr-2xl  bg- pb-10">
             <header className=" flex justify-between items-center border-b-2 px-3 border-gray-200 md:py-0 py-5 md:pb-12">
               <h1 className="text-2xl font-bold text-gray-800">
@@ -97,7 +97,7 @@ const Cart = () => {
               </h1>
             </header>
 
-            <div className=" border-red-600">
+            <div className="border-red-600">
               {data.map((item) => (
                 <div className="md:border-b-2 py-2 md:border-gray-200  flex justify-between md:items-center">
                   <img

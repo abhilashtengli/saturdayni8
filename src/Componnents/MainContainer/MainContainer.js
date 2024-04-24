@@ -5,6 +5,7 @@ import FemaleCategoryButton from "../Buttons/FemaleCategoryButton";
 import { useSelector } from "react-redux";
 import ImageSlider from "../Functionalities/ImageSlider";
 import { bannerImages } from "../../Utils/Constants";
+import DelayedComponent from "../DelayComponent/DelayedComponent";
 
 const MainContainer = () => {
   const gender = useSelector((state) => state.user.gender);
@@ -17,10 +18,15 @@ const MainContainer = () => {
       <div className="">
         <ImageSlider images={bannerImages} interval={5000} />
       </div>
-
-      <div className=" border-black pt-12 pb-5">
-        {gender === "male" ? <MaleCategoryButton /> : <FemaleCategoryButton />}
-      </div>
+      <DelayedComponent>
+        <div className=" border-black pt-12 pb-5">
+          {gender === "male" ? (
+            <MaleCategoryButton />
+          ) : (
+            <FemaleCategoryButton />
+          )}
+        </div>
+      </DelayedComponent>
       <Products param={selectedProductType} limit={4} />
     </>
   );
